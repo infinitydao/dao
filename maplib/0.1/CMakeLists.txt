@@ -20,10 +20,12 @@ include( ${QT_USE_FILE} )
 
 set( HEADERS
 	include/maplib.h
+	include/regionitem.h
 )
 
 set( SOURCES	
 	src/main.cpp
+	src/regionitem.cpp
 )
 
 #set( UI_SOURCES
