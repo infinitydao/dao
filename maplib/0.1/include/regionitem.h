@@ -36,7 +36,7 @@ public:
 
 protected:
   //тип региона
-  RegionItem m_type;
+  RegionItemType m_type;
 
 public:
   //метод возвращает тип региона
