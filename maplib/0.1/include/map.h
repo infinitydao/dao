@@ -4,15 +4,14 @@ Created by infinitydao@gmail.com
             09/2013
 */
 
-#ifndef __MAPLIB_H__
-#define __MAPLIB_H__
+#ifndef __MAP_H__
+#define __MAP_H__
 
 //=========================================================================
-class Map
-{
+namespace maplib{
 
-};
+}//namespace maplib
 
 //=========================================================================
 
-#endif //__MAP_H__
+#endif//__MAP_H__
