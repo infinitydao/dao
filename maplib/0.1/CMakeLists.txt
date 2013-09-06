@@ -24,7 +24,7 @@ set( HEADERS
 )
 
 set( SOURCES	
-	src/main.cpp
+	#src/main.cpp
 	src/regionitem.cpp
 )
 
