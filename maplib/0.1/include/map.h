@@ -7,8 +7,25 @@ Created by infinitydao@gmail.com
 #ifndef __MAP_H__
 #define __MAP_H__
 
+#include <QVector>
+#include <QSharedPointer>
+#include "regionitem.h"
+
 //=========================================================================
 namespace maplib{
+
+  //=======================================================================
+  class Map
+  /* ласс описывает пр€моугольную карту регионов(€чеек) размером m x n*/
+  {
+  public:
+    explicit Map( const unsigned char m, const unsigned char n );
+    virtual ~Map();
+
+  protected:
+    QVector<QVector< QSharedPointer<RegionItem> >> m_map;  //ƒвумерный массив €чеек карты (предварительный вариант)
+  };
+  //=======================================================================
 
 }//namespace maplib
 

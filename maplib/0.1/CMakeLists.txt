@@ -26,6 +26,7 @@ set( HEADERS
 
 set( SOURCES	
 	src/map.cpp
+	#src/maplib.cpp
 	src/regionitem.cpp
 )
 

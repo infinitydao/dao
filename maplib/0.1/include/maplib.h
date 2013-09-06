@@ -8,10 +8,10 @@ Created by infinitydao@gmail.com
 #define __MAPLIB_H__
 
 //=========================================================================
-class Map
-{
 
-};
+namespace maplib{
+  const unsigned char cMapMinimumSize = 5;//минимальный размер (квадратной) карты
+}//namespace maplib
 
 //=========================================================================
 
