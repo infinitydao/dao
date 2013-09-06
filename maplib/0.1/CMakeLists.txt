@@ -46,6 +46,6 @@ set( SOURCES
 #qt4_wrap_ui( UI_HEADERS ${UI_SOURCES} )
 #qt4_add_resources( QRC_SOURCES ${RESOURCES} )
 
-add_library( ${PROJECT_NAME} MODULE ${HEADERS} ${SOURCES}  )
+add_library( ${PROJECT_NAME} ${HEADERS} ${SOURCES}  )
 #${MOC_SOURCES} ${UI_HEADERS} ${QRC_SOURCES}
 target_link_libraries( ${PROJECT_NAME} ${QT_LIBRARIES} ${QT_QTMAIN_LIBRARY} )
