@@ -7,4 +7,9 @@ Created by infinitydao@gmail.com
 #ifndef __MAINWINDOW_H__
 #define __MAINWINDOW_H__
 
+#include <QMainWindow>
+
+//=========================================================================
+//=========================================================================
+
 #endif
