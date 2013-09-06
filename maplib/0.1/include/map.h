@@ -19,7 +19,7 @@ namespace maplib{
   /* ласс описывает пр€моугольную карту регионов(€чеек) размером m x n*/
   {
   public:
-    explicit Map( const unsigned char m, const unsigned char n );
+    explicit Map( const unsigned char m/*столбцы*/, const unsigned char n/*строки*/ );
     virtual ~Map();
 
   protected:
