@@ -5,10 +5,13 @@ Created by infinitydao@gmail.com
 */
 
 #include <QApplication>
+#include "mainwindow.h"
 
 int main( int argc, char *argv[] )
 {
   QApplication app( argc, argv );
+  SEMainWindow SEWindow;
+  SEWindow.show();
   return app.exec();
 }
 
