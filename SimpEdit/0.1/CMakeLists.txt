@@ -24,6 +24,7 @@ set( HEADERS
 
 set( SOURCES	
 	src/main.cpp
+	src/mainwindow.cpp
 )
 
 set( UI_SOURCES

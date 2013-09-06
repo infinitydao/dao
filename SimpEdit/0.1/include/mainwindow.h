@@ -14,6 +14,10 @@ Created by infinitydao@gmail.com
 class SEMainWindow : public QMainWindow, public Ui::MainWindow
 {
   Q_OBJECT
+
+public:
+  SEMainWindow( QWidget *parent = 0, Qt::WindowFlags flags = 0 );
+  ~SEMainWindow();
 };
 
 //=========================================================================
