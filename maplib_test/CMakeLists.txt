@@ -2,9 +2,11 @@ cmake_minimum_required( VERSION 2.8 )
 
 set( PROJECT_NAME maplib_test )
 set( PROJECT_LANGUAGES CXX C )
-set( ROOT_PATH "." )
+set( ROOT_PATH "../" )
 
+include( ${ROOT_PATH}/project/General.cmake )
 project( ${PROJECT_NAME} ${PROJECT_LANGUAGES} )
+
 include_directories(
 	include/
 	../maplib/0.1/include
@@ -47,3 +49,9 @@ set( SOURCES
 #${HEADERS} ${SOURCES} ${MOC_SOURCES} ${UI_HEADERS} ${QRC_SOURCES}
 add_executable( ${PROJECT_NAME}  ${SOURCES}  )
 target_link_libraries( ${PROJECT_NAME} ${QT_LIBRARIES} ${QT_QTMAIN_LIBRARY} )
+
+set( DEPENDS_MODULE
+	maplib
+)
+
+make_deep_tree()

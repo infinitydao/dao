@@ -1,0 +1,21 @@
+#chmod 777 @PROJECT_NAME@
+
+#!/bin/sh
+dir="$0"
+exname=@PROJECT_NAME@ #application name
+name=`basename "$dir"`
+exdir=`which "$dir" 2>/dev/null`
+if [ "$exdir" ]; then
+	exdir=`pwd`/`dirname "$dir"`
+fi
+
+if [ -n "$LD_LIBRARY_PATH" ]
+then
+	LD_LIBRARY_PATH=$exdir:$LD_LIBRARY_PATH
+else
+	LD_LIBRARY_PATH=$exdir
+fi
+export LD_LIBRARY_PATH
+
+cd $exdir
+./$exname $*

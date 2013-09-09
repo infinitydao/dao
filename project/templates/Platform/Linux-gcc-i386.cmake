@@ -1,0 +1,2 @@
+set(CMAKE_C_FLAGS_INIT "-m32")
+set(CMAKE_C_LIBRARY_ARCHITECTURE "/usr/lib32/")
