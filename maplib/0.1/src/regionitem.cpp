@@ -42,3 +42,9 @@ maplib::RegionItem::RegionItemType maplib::RegionItem::type() const
 }
 
 //-------------------------------------------------------------------------
+void maplib::RegionItem::setType(maplib::RegionItem::RegionItemType type)
+{
+  m_type = type;
+}
+
+//-------------------------------------------------------------------------

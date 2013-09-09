@@ -41,6 +41,8 @@ protected:
 public:
   //метод возвращает тип региона
   RegionItemType type()const;
+  //метод меняет тип региона
+  void setType( RegionItemType type );
 };
 
 //=========================================================================

@@ -15,7 +15,7 @@ maplib::Map::Map(const unsigned char m, const unsigned char n)
   if( m < maplib::cMapMinimumSize || n < maplib::cMapMinimumSize )
     throw std::runtime_error( "Map size cant be less cMapMinimumSize" );
 
-  for( unsigned int i = 0; i < n; i++ ){
+  for( unsigned int i = 0; i < m; i++ ){
     QVector<QSharedPointer< RegionItem >> vec;
     for( unsigned int j = 0; j < n; j++ ){
       QSharedPointer<RegionItem> Item = QSharedPointer<RegionItem>( new RegionItem(RegionItem::Block) );

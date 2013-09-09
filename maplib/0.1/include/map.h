@@ -22,7 +22,7 @@ namespace maplib{
     explicit Map( const unsigned char m/*столбцы*/, const unsigned char n/*строки*/ );
     virtual ~Map();
 
-  protected:
+  public:
     QVector<QVector< QSharedPointer<RegionItem> >> m_map;  //ƒвумерный массив €чеек карты (предварительный вариант)
   };
   //=======================================================================
