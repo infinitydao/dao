@@ -23,11 +23,12 @@ set( HEADERS
 	include/maplib.h
 	include/regionitem.h
 	include/map.h
+	include/mapconsole.h
 )
 
 set( SOURCES	
 	src/map.cpp
-	#src/maplib.cpp
+	src/mapconsole.cpp
 	src/regionitem.cpp
 )
 
