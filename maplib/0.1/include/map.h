@@ -19,6 +19,7 @@ namespace maplib{
   /* ласс описывает пр€моугольную карту регионов(€чеек) размером m x n*/
   {
   public:
+    Map();
     explicit Map( const unsigned char m/*столбцы*/, const unsigned char n/*строки*/ );
     virtual ~Map();
 
@@ -26,6 +27,10 @@ namespace maplib{
     QVector<QVector< QSharedPointer<RegionItem> >> m_map;  //ƒвумерный массив €чеек карты (предварительный вариант)
 
     void clear();     //ќчистка m_map
+    bool isEmpty()const;  
+    int m()const;
+    int n()const;
+    void reset( const unsigned char m, const unsigned char n ); //”дал€ет старую карту и инициализирует новую
   };
   //=======================================================================
 

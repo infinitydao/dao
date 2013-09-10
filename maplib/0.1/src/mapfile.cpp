@@ -44,13 +44,63 @@ void maplib::MapFile::setFileName(const QString &name)
 //-------------------------------------------------------------------------
 bool maplib::MapFile::Save()
 {
-  return false;
+  m_file.close();
+
+  if( !m_file.open( QIODevice::ReadWrite | QIODevice::Truncate ) )
+    return false;
+
+  saveFileHeader();
+  saveFileData();
+
+  m_file.close();
+
+  return Open();
 }
 
 //-------------------------------------------------------------------------
 bool maplib::MapFile::Load()
 {
-  return false;
+  int M = 0, N = 0;
+
+  loadFileHeader( &M, &N );
+  loadFileData();
+
+  return true;
+}
+
+//-------------------------------------------------------------------------
+void maplib::MapFile::saveFileHeader()
+{
+  if( m_map.isEmpty() )
+    return;
+
+  const int cM = m_map.m();
+  const int cN = m_map.n();
+
+  m_file.write( (char*)(&cM), sizeof(cM) );
+  m_file.write( (char*)(&cN), sizeof(cN) );
+}
+
+//-------------------------------------------------------------------------
+void maplib::MapFile::saveFileData()
+{
+  for( int i = 0; i < m_map.m(); i++ ){
+    for( int j = 0; j < m_map.n(); j++ ){
+      m_file.write( (char*)(&m_map.m_map[i][j]), sizeof(maplib::RegionItem::RegionItemType) );
+    }
+  }
+}
+
+//-------------------------------------------------------------------------
+void maplib::MapFile::loadFileHeader(int *m, int *n)
+{
+
+}
+
+//-------------------------------------------------------------------------
+void maplib::MapFile::loadFileData()
+{
+
 }
 
 //-------------------------------------------------------------------------

@@ -28,6 +28,11 @@ public:
 protected:
   QFile m_file;
   const Map& m_map;
+
+  virtual void saveFileHeader();
+  virtual void saveFileData();
+  virtual void loadFileHeader( int* m, int* n );
+  virtual void loadFileData();
 };
 
 }//namespace maplib
