@@ -29,6 +29,7 @@ public slots:
 
 private:
   void CreateActions();
+  void CreateMenus();
 
   QAction *m_NewMapAction;
   QAction *m_SaveMapAction;

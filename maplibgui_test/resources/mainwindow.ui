@@ -136,12 +136,6 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew"/>
-    <addaction name="actionSave"/>
-    <addaction name="actionSave_As"/>
-    <addaction name="actionLoad"/>
-    <addaction name="separator"/>
-    <addaction name="actionExit"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
