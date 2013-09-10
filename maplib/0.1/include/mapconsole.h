@@ -7,9 +7,12 @@ Created by infinitydao@gmail.com
 #ifndef __MAPCONSOLE_H__
 #define __MAPCONSOLE_H__
 
+#include <Windows.h>
+#include <stdio.h>
 #include "regionitem.h"
 
 //=========================================================================
+//Windows only
 namespace maplib{
 
   /*
@@ -26,6 +29,9 @@ namespace maplib{
     RegionItem::RegionItemType m_type;
     int m_m;
     int m_n;
+    HANDLE m_hConsoleOut;
+
+    BOOL PutCh( int ch );
   };
 
 }

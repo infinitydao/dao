@@ -10,6 +10,8 @@ Created by infinitydao@gmail.com
 #include <QVector>
 #include <QSharedPointer>
 #include "regionitem.h"
+#include "mapconsole.h"
+#include "map.h"
 
 //=========================================================================
 namespace maplib{
