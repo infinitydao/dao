@@ -11,6 +11,7 @@ MainWindow::MainWindow( QWidget *parent, Qt::WindowFlags flags )
 :QMainWindow( parent, flags )
 {
   setupUi(this);
+  graphicsView->setVisible( false );
 
   CreateActions();
   CreateMenus();
@@ -49,7 +50,7 @@ void MainWindow::OnLoad()
 //-------------------------------------------------------------------------
 void MainWindow::OnExit()
 {
-
+  qApp->exit( 0 );
 }
 
 //-------------------------------------------------------------------------
@@ -74,6 +75,23 @@ void MainWindow::CreateActions()
   m_ExitAction = new QAction( tr("Exit"), this );
   connect( m_ExitAction, SIGNAL(triggered()),
     this, SLOT(OnExit()));
+
+
+  m_BlockAction = new QAction( tr("Block"), this );
+  connect( m_BlockAction, SIGNAL(triggered()),
+    this, SLOT(OnBlock()) );
+
+  m_EmptyAction = new QAction( tr("Empty"), this );
+  connect( m_EmptyAction, SIGNAL(triggered()),
+    this, SLOT(OnFree()));
+
+  m_PlayerAction = new QAction( tr("Player"), this );
+  connect( m_PlayerAction, SIGNAL(triggered()),
+    this, SLOT(OnPlayer()) );
+
+  m_EnemyAction = new QAction( tr("Enemy"), this );
+  connect( m_EnemyAction, SIGNAL(triggered()),
+    this, SLOT(OnEnemy()) ); 
 }
 
 //-------------------------------------------------------------------------
@@ -85,6 +103,30 @@ void MainWindow::CreateMenus()
   menuFile->addAction( m_LoadMapAction );
   menuFile->addSeparator();
   menuFile->addAction( m_ExitAction );
+}
+
+//-------------------------------------------------------------------------
+void MainWindow::OnBlock()
+{
+
+}
+
+//-------------------------------------------------------------------------
+void MainWindow::OnEmpty()
+{
+
+}
+
+//-------------------------------------------------------------------------
+void MainWindow::OnPlayer()
+{
+
+}
+
+//-------------------------------------------------------------------------
+void MainWindow::OnEnemy()
+{
+
 }
 
 //-------------------------------------------------------------------------

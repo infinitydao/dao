@@ -27,6 +27,11 @@ public slots:
   void OnLoad();
   void OnExit();
 
+  void OnBlock();
+  void OnEmpty();
+  void OnPlayer();
+  void OnEnemy();
+
 private:
   void CreateActions();
   void CreateMenus();
@@ -36,6 +41,11 @@ private:
   QAction *m_SaveAsMapAction;
   QAction *m_LoadMapAction;
   QAction *m_ExitAction;
+
+  QAction *m_BlockAction;
+  QAction *m_EmptyAction;
+  QAction *m_PlayerAction;
+  QAction *m_EnemyAction;
 };
 
 //=========================================================================
