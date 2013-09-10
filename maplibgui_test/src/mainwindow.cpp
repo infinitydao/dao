@@ -27,8 +27,14 @@ MainWindow::~MainWindow()
 //-------------------------------------------------------------------------
 void MainWindow::OnNewMap()
 {
-  NewMapDialog *pNewMapDialog = new NewMapDialog(this);
-  pNewMapDialog->exec();
+  NewMapDialog *pNewMapDialog = new NewMapDialog( this );
+
+  if( pNewMapDialog->exec() == QDialog::Rejected )
+    return;
+
+  QString sFileName = pNewMapDialog->fileName();
+  QString sM = pNewMapDialog->Width();
+  QString sN = pNewMapDialog->Height();
 }
 
 //-------------------------------------------------------------------------

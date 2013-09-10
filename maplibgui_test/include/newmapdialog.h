@@ -18,6 +18,10 @@ class NewMapDialog : public QDialog, Ui::Dialog
 public:
   NewMapDialog( QWidget *parent = 0, Qt::WindowFlags flags = 0 );
   ~NewMapDialog();
+
+  QString fileName()const;
+  QString Width()const;
+  QString Height()const;
 };
 
 //=========================================================================

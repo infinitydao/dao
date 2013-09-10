@@ -20,3 +20,21 @@ NewMapDialog::~NewMapDialog()
 }
 
 //-------------------------------------------------------------------------
+QString NewMapDialog::fileName()const
+{
+  return lineEdit_3->text();
+}
+
+//-------------------------------------------------------------------------
+QString NewMapDialog::Width()const
+{
+  return lineEdit->text();
+}
+
+//-------------------------------------------------------------------------
+QString NewMapDialog::Height()const
+{
+  return lineEdit_2->text();
+}
+
+//-------------------------------------------------------------------------
