@@ -24,12 +24,14 @@ set( HEADERS
 	include/regionitem.h
 	include/map.h
 	include/mapconsole.h
+	include/mapfile.h
 )
 
 set( SOURCES	
 	src/map.cpp
 	src/mapconsole.cpp
 	src/regionitem.cpp
+	src/mapfile.cpp
 )
 
 #set( UI_SOURCES
