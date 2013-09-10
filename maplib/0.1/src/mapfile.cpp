@@ -104,7 +104,18 @@ void maplib::MapFile::loadFileHeader(int *m, int *n)
 //-------------------------------------------------------------------------
 void maplib::MapFile::loadFileData( int m, int n )
 {
+  if( m <= 0 || n <= 0 )
+    return;
 
+  Map *ptrMap = const_cast<Map*>(&m_map);
+
+  ptrMap->reset( m, n );
+
+  for( int i = 0; i < m; i++ ){
+    for( int j = 0; j < n; j++ ){
+      m_file.read( (char*)(ptrMap->m_map)[i][j].data(), sizeof(maplib::RegionItem::RegionItemType) );
+    }
+  }
 }
 
 //-------------------------------------------------------------------------
