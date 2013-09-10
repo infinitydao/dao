@@ -32,7 +32,7 @@ protected:
   virtual void saveFileHeader();
   virtual void saveFileData();
   virtual void loadFileHeader( int* m, int* n );
-  virtual void loadFileData();
+  virtual void loadFileData( int M, int N );
 };
 
 }//namespace maplib

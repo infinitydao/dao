@@ -63,7 +63,7 @@ bool maplib::MapFile::Load()
   int M = 0, N = 0;
 
   loadFileHeader( &M, &N );
-  loadFileData();
+  loadFileData( M, N );
 
   return true;
 }
@@ -94,11 +94,15 @@ void maplib::MapFile::saveFileData()
 //-------------------------------------------------------------------------
 void maplib::MapFile::loadFileHeader(int *m, int *n)
 {
+  if( !m || !n )
+    return;
 
+  m_file.read( (char*)m, sizeof(int) );
+  m_file.read( (char*)n, sizeof(int) );
 }
 
 //-------------------------------------------------------------------------
-void maplib::MapFile::loadFileData()
+void maplib::MapFile::loadFileData( int m, int n )
 {
 
 }
