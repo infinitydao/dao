@@ -22,11 +22,13 @@ include( ${QT_USE_FILE} )
 
 set( HEADERS
 	include/mainwindow.h
+	include/newmapdialog.h
 )
 
 set( SOURCES	
 	src/main.cpp
 	src/mainwindow.cpp
+	src/newmapdialog.cpp
 )
 
 set( UI_SOURCES
@@ -40,6 +42,7 @@ set( RESOURCES
 
 set( MOC_HEADERS
 	include/mainwindow.h
+	include/newmapdialog.h
 )
 
 qt4_wrap_cpp( MOC_SOURCES ${MOC_HEADERS} )

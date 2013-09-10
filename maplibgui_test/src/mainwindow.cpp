@@ -5,6 +5,7 @@
 */
 
 #include "mainwindow.h"
+#include "newmapdialog.h"
 
 //-------------------------------------------------------------------------
 MainWindow::MainWindow( QWidget *parent, Qt::WindowFlags flags )
@@ -26,7 +27,8 @@ MainWindow::~MainWindow()
 //-------------------------------------------------------------------------
 void MainWindow::OnNewMap()
 {
-
+  NewMapDialog *pNewMapDialog = new NewMapDialog(this);
+  pNewMapDialog->exec();
 }
 
 //-------------------------------------------------------------------------
