@@ -32,6 +32,7 @@ set( SOURCES
 	src/mapconsole.cpp
 	src/regionitem.cpp
 	src/mapfile.cpp
+	src/maplib_pch.cpp
 )
 
 #set( UI_SOURCES

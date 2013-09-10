@@ -10,8 +10,6 @@ Created by infinitydao@gmail.com
 #include <QVector>
 #include <QSharedPointer>
 #include "regionitem.h"
-#include "mapconsole.h"
-#include "map.h"
 
 //=========================================================================
 namespace maplib{
@@ -26,6 +24,8 @@ namespace maplib{
 
   public:
     QVector<QVector< QSharedPointer<RegionItem> >> m_map;  //ƒвумерный массив €чеек карты (предварительный вариант)
+
+    void clear();     //ќчистка m_map
   };
   //=======================================================================
 
