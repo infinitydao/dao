@@ -8,15 +8,33 @@
 #define __MAINWINDOW_H__
 
 #include <QMainWindow>
+#include <QAction>
 #include "ui_mainwindow.h"
 
 //=========================================================================
 class MainWindow : public QMainWindow, public Ui::MainWindow
 {
+  Q_OBJECT
+
 public:
   MainWindow( QWidget *parent = 0, Qt::WindowFlags flags = 0 );
   ~MainWindow();
 
+public slots:
+  void OnNewMap();
+  void OnSave();
+  void OnSaveAs();
+  void OnLoad();
+  void OnExit();
+
+private:
+  void CreateActions();
+
+  QAction *m_NewMapAction;
+  QAction *m_SaveMapAction;
+  QAction *m_SaveAsMapAction;
+  QAction *m_LoadMapAction;
+  QAction *m_ExitAction;
 };
 
 //=========================================================================
