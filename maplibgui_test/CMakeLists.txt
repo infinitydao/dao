@@ -29,24 +29,23 @@ set( SOURCES
 	src/mainwindow.cpp
 )
 
-#set( UI_SOURCES
-#	resources/uis/mainwindow.ui
-#)
+set( UI_SOURCES
+	resources/mainwindow.ui
+)
 
-#set( RESOURCES
-#	resources/simpedit.qrc
-#)
+set( RESOURCES
+	resources/maplibgui_test.qrc
+)
 
-#set( MOC_HEADERS
-#	include/mainwindow.h
-#)
+set( MOC_HEADERS
+	include/mainwindow.h
+)
 
-#qt4_wrap_cpp( MOC_SOURCES ${MOC_HEADERS} )
-#qt4_wrap_ui( UI_HEADERS ${UI_SOURCES} )
-#qt4_add_resources( QRC_SOURCES ${RESOURCES} )
-
-# ${MOC_SOURCES} ${UI_HEADERS} ${QRC_SOURCES}
-add_executable( ${PROJECT_NAME}  ${HEADERS} ${SOURCES}  )
+qt4_wrap_cpp( MOC_SOURCES ${MOC_HEADERS} )
+qt4_wrap_ui( UI_HEADERS ${UI_SOURCES} )
+qt4_add_resources( QRC_SOURCES ${RESOURCES} )
+ 
+add_executable( ${PROJECT_NAME}  ${HEADERS} ${SOURCES} ${MOC_SOURCES} ${UI_HEADERS} ${QRC_SOURCES} )
 target_link_libraries( ${PROJECT_NAME} ${QT_LIBRARIES} ${QT_QTMAIN_LIBRARY} maplib)
 
 set( DEPENDS_MODULE
