@@ -9,67 +9,80 @@ Created by infinitydao@gmail.com
 #include "maplib.h"
 #include "map.h"
 
+std::auto_ptr<maplib::CMap> maplib::Map::_inst( new maplib::CMap );
+
+#ifndef DEFAULT_CELL_SIZE
+  #define DEFAULT_CELL_SIZE 20
+#endif
+
 //-------------------------------------------------------------------------
-maplib::Map::Map()
+maplib::CMap::CMap()
+:m_cellSize(DEFAULT_CELL_SIZE),
+m_width(0),
+m_height(0)
 {
 
 }
 
 //-------------------------------------------------------------------------
-maplib::Map::Map(const unsigned char m, const unsigned char n)
+maplib::CMap::~CMap()
 {
-  reset( m, n );
+
 }
 
 //-------------------------------------------------------------------------
-maplib::Map::~Map()
+void maplib::CMap::reset( int n, int m )
 {
-  m_map.clear();
-}
+    m_map.clear();
 
-//-------------------------------------------------------------------------
-void maplib::Map::clear()
-{
-  m_map.clear();
-}
-
-//-------------------------------------------------------------------------
-bool maplib::Map::isEmpty() const
-{
-  return m_map.isEmpty();
-}
-
-//-------------------------------------------------------------------------
-int maplib::Map::m() const
-{
-  return m_map.size();
-}
-
-//-------------------------------------------------------------------------
-int maplib::Map::n() const
-{
-  if( m() > 0 )
-    return m_map[0].size();
-  else
-    return 0;
-}
-
-//-------------------------------------------------------------------------
-void maplib::Map::reset(const unsigned char m, const unsigned char n)
-{
-    clear();
-
-    if( m < maplib::cMapMinimumSize || n < maplib::cMapMinimumSize )
+    if( n < maplib::cMapMinimumSize || m < maplib::cMapMinimumSize )
       throw std::runtime_error( "Map size cant be less cMapMinimumSize" );
   
-    for( unsigned int i = 0; i < m; i++ ){
-      QVector<QSharedPointer< RegionItem >> vec;
-      for( unsigned int j = 0; j < n; j++ ){
-        QSharedPointer<RegionItem> Item = QSharedPointer<RegionItem>( new RegionItem(RegionItem::Block) );
+    for( unsigned int i = 0; i < n; i++ ){
+      QVector<RegionItem> vec;
+      for( unsigned int j = 0; j < m; j++ ){
+        RegionItem Item(RegionItem::Block);
         vec.push_back( Item );
       }
       m_map.push_back( vec );
     }
+}
+
+//-------------------------------------------------------------------------
+void maplib::CMap::setSize( float width, float height )
+{
+  m_width = width;
+  m_height = height;
+}
+
+//-------------------------------------------------------------------------
+float maplib::CMap::width()const
+{
+  return m_width;
+}
+
+//-------------------------------------------------------------------------
+float maplib::CMap::height()const
+{
+  return m_height;
+}
+
+//-------------------------------------------------------------------------
+void maplib::CMap::setFileName( const QString& name )
+{
+  m_fileName = name;
+}
+
+//-------------------------------------------------------------------------
+QString maplib::CMap::fileName()const
+{
+  return m_fileName;
+}
+
+//-------------------------------------------------------------------------
+int maplib::CMap::cellSize()const
+{
+  return m_cellSize;
 }
 
 //-------------------------------------------------------------------------

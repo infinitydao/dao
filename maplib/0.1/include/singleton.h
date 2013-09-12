@@ -21,7 +21,7 @@ public:
   static T* instance()
   {
     if( &*_inst == 0 )
-      return _inst.reset( new T );
+      _inst.reset( new T );
     return &*_inst;
   }
 

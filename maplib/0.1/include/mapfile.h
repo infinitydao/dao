@@ -17,8 +17,8 @@ namespace maplib{
 class MapFile
 {
 public:
-  MapFile( const Map& map );
-  MapFile( const Map& map, const QString& name );
+  MapFile( );
+  MapFile( const QString& name );
   virtual ~MapFile();
 
   bool Open();
@@ -28,12 +28,11 @@ public:
 
 protected:
   QFile m_file;
-  const Map& m_map;
 
   virtual void saveFileHeader();
   virtual void saveFileData();
-  virtual void loadFileHeader( int* m, int* n );
-  virtual void loadFileData( int M, int N );
+  virtual void loadFileHeader( int* n, int* m );
+  virtual void loadFileData( int N, int M );
 };
 
 }//namespace maplib

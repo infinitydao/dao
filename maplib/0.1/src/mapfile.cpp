@@ -8,16 +8,14 @@ Created by infinitydao@gmail.com
 #include "mapfile.h"
 
 //-------------------------------------------------------------------------
-maplib::MapFile::MapFile( const Map& map )
-:m_map(map)
+maplib::MapFile::MapFile( )
 {
 
 }
 
 //-------------------------------------------------------------------------
-maplib::MapFile::MapFile( const Map& map, const QString &name )
-:m_map(map),
-m_file(name)
+maplib::MapFile::MapFile( const QString &name )
+:m_file(name)
 {
 
 }
@@ -72,11 +70,11 @@ bool maplib::MapFile::Load()
 //-------------------------------------------------------------------------
 void maplib::MapFile::saveFileHeader()
 {
-  if( m_map.isEmpty() )
+  if( Map::instance()->m_map.empty() )
     return;
 
-  const int cM = m_map.m();
-  const int cN = m_map.n();
+  const int cN = Map::instance()->width();
+  const int cM = Map::instance()->height();
 
   m_file.write( (char*)(&cM), sizeof(cM) );
   m_file.write( (char*)(&cN), sizeof(cN) );
@@ -85,15 +83,15 @@ void maplib::MapFile::saveFileHeader()
 //-------------------------------------------------------------------------
 void maplib::MapFile::saveFileData()
 {
-  for( int i = 0; i < m_map.m(); i++ ){
-    for( int j = 0; j < m_map.n(); j++ ){
-      m_file.write( (char*)(&m_map.m_map[i][j]), sizeof(maplib::RegionItem::RegionItemType) );
+  for( int i = 0; i < Map::instance()->width(); i++ ){
+    for( int j = 0; j < Map::instance()->height(); j++ ){
+      m_file.write( (char*)(&Map::instance()->m_map[i][j]), sizeof(maplib::RegionItem::RegionItemType) );
     }
   }
 }
 
 //-------------------------------------------------------------------------
-void maplib::MapFile::loadFileHeader(int *m, int *n)
+void maplib::MapFile::loadFileHeader(int *n, int *m)
 {
   if( !m || !n )
     return;
@@ -103,18 +101,18 @@ void maplib::MapFile::loadFileHeader(int *m, int *n)
 }
 
 //-------------------------------------------------------------------------
-void maplib::MapFile::loadFileData( int m, int n )
+void maplib::MapFile::loadFileData( int n, int m )
 {
-  if( m <= 0 || n <= 0 )
+  if( n <= 0 || m <= 0 )
     return;
 
-  Map *ptrMap = const_cast<Map*>(&m_map);
+  Map::instance()->reset( n, m );
 
-  ptrMap->reset( m, n );
-
+  RegionItem::RegionItemType type;
   for( int i = 0; i < m; i++ ){
     for( int j = 0; j < n; j++ ){
-      m_file.read( (char*)(ptrMap->m_map)[i][j].data(), sizeof(maplib::RegionItem::RegionItemType) );
+      m_file.read( (char*)(&type), sizeof(maplib::RegionItem::RegionItemType) );
+      Map::instance()->m_map[i][j] = type;
     }
   }
 }

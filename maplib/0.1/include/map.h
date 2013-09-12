@@ -11,38 +11,40 @@ Created by infinitydao@gmail.com
 #include <QVector>
 #include <QSharedPointer>
 #include "regionitem.h"
+#include "singleton.h"
 
 //=========================================================================
 namespace maplib{
 
   //=======================================================================
-  class Map
-  /*Класс описывает прямоугольную карту регионов(ячеек) размером m x n*/
-  {
-  public:
-    Map();
-    explicit Map( const unsigned char m/*столбцы*/, const unsigned char n/*строки*/ );
-    virtual ~Map();
-
-  public:
-    QVector<QVector< QSharedPointer<RegionItem> >> m_map;  //Двумерный массив ячеек карты (предварительный вариант)
-
-    void clear();     //Очистка m_map
-    bool isEmpty()const;  
-    int m()const;
-    int n()const;
-    void reset( const unsigned char m, const unsigned char n ); //Удаляет старую карту и инициализирует новую
-  };
-  //=======================================================================
-
-  class NewMap 
+  class CMap 
   {
   protected:
-    unsigned int m_cellSize;                //Размер одной игровой ячейки (ширина и высота)
+    const unsigned int m_cellSize;          //Размер одной игровой ячейки (ширина и высота)
     QString m_fileName;                     //Файл карты
     float m_width;                          //Ширина карты
     float m_height;                         //Высота карты
+
+  public:
+    CMap();
+    virtual ~CMap();
+
+    void reset( int n, int m );             //Удаляет старую карту и инициализирует новую
+
+    void setSize( float width, float height );
+
+    float height()const;
+    float width()const;
+
+    void setFileName( const QString& name );
+    QString fileName()const;
+
+    int cellSize()const;
+
+    QVector<QVector<RegionItem>>  m_map;    //Карта
   };
+
+  typedef Singleton<CMap> Map;
 
 }//namespace maplib
 
