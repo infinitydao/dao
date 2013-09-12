@@ -10,6 +10,7 @@
 #include <QMainWindow>
 #include <QAction>
 #include "ui_mainwindow.h"
+#include "map.h"
 
 //=========================================================================
 class MainWindow : public QMainWindow, public Ui::MainWindow
@@ -50,9 +51,6 @@ private:
   QAction *m_PlayerAction;
   QAction *m_EnemyAction;
 
-  QString m_mapFileName;
-  int m_m;
-  int m_n;
   QGraphicsScene m_scene;
 };
 

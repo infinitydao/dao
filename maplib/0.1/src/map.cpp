@@ -35,6 +35,8 @@ void maplib::CMap::reset( int n, int m )
 {
     m_map.clear();
 
+    setSize( n, m );
+
     if( n < maplib::cMapMinimumSize || m < maplib::cMapMinimumSize )
       throw std::runtime_error( "Map size cant be less cMapMinimumSize" );
   
@@ -49,20 +51,20 @@ void maplib::CMap::reset( int n, int m )
 }
 
 //-------------------------------------------------------------------------
-void maplib::CMap::setSize( float width, float height )
+void maplib::CMap::setSize( int width, int height )
 {
   m_width = width;
   m_height = height;
 }
 
 //-------------------------------------------------------------------------
-float maplib::CMap::width()const
+int maplib::CMap::width()const
 {
   return m_width;
 }
 
 //-------------------------------------------------------------------------
-float maplib::CMap::height()const
+int maplib::CMap::height()const
 {
   return m_height;
 }

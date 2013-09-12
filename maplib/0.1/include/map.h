@@ -22,8 +22,8 @@ namespace maplib{
   protected:
     const unsigned int m_cellSize;          //Размер одной игровой ячейки (ширина и высота)
     QString m_fileName;                     //Файл карты
-    float m_width;                          //Ширина карты
-    float m_height;                         //Высота карты
+    int m_width;                          //Ширина карты
+    int m_height;                         //Высота карты
 
   public:
     CMap();
@@ -31,10 +31,10 @@ namespace maplib{
 
     void reset( int n, int m );             //Удаляет старую карту и инициализирует новую
 
-    void setSize( float width, float height );
+    void setSize( int width, int height );
 
-    float height()const;
-    float width()const;
+    int height()const;
+    int width()const;
 
     void setFileName( const QString& name );
     QString fileName()const;
