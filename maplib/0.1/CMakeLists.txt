@@ -25,6 +25,7 @@ set( HEADERS
 	include/map.h
 	include/mapconsole.h
 	include/mapfile.h
+	include/singleton.h
 )
 
 set( SOURCES	
