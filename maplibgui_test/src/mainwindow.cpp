@@ -7,9 +7,15 @@
 #include "mainwindow.h"
 #include "newmapdialog.h"
 
+#ifndef GRIDSIZE
+  #define GRIDSIZE 20
+#endif
+
 //-------------------------------------------------------------------------
 MainWindow::MainWindow( QWidget *parent, Qt::WindowFlags flags )
-:QMainWindow( parent, flags )
+:QMainWindow( parent, flags ),
+m_m(-1),
+m_n(-1)
 {
   setupUi(this);
   graphicsView->setVisible( false );
@@ -32,9 +38,14 @@ void MainWindow::OnNewMap()
   if( pNewMapDialog->exec() == QDialog::Rejected )
     return;
 
-  QString sFileName = pNewMapDialog->fileName();
+  m_mapFileName = pNewMapDialog->fileName();
   QString sM = pNewMapDialog->Width();
   QString sN = pNewMapDialog->Height();
+
+  m_m = sM.toInt();
+  m_n = sN.toInt();
+
+  createNewMap();
 }
 
 //-------------------------------------------------------------------------
@@ -135,6 +146,24 @@ void MainWindow::OnPlayer()
 void MainWindow::OnEnemy()
 {
 
+}
+
+//-------------------------------------------------------------------------
+void MainWindow::createNewMap()
+{
+  graphicsView->setVisible( true );
+  createGrid();
+}
+
+//-------------------------------------------------------------------------
+void MainWindow::createGrid()
+{
+  m_scene.addRect( 0, 0, m_m*GRIDSIZE, m_n*GRIDSIZE, QPen(), QBrush(QColor(0,125,0) ) );
+  for( int i = 0; i <= m_m; i++ )
+    m_scene.addLine( i*GRIDSIZE, 0, i*GRIDSIZE, GRIDSIZE*m_n );
+  for( int i = 0; i <= m_n; i++ )
+    m_scene.addLine( 0, i*GRIDSIZE, GRIDSIZE*m_m, i*GRIDSIZE );
+  graphicsView->setScene( &m_scene );
 }
 
 //-------------------------------------------------------------------------

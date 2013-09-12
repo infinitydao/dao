@@ -36,6 +36,9 @@ private:
   void CreateActions();
   void CreateMenus();
 
+  void createNewMap();
+  void createGrid();
+
   QAction *m_NewMapAction;
   QAction *m_SaveMapAction;
   QAction *m_SaveAsMapAction;
@@ -46,6 +49,11 @@ private:
   QAction *m_EmptyAction;
   QAction *m_PlayerAction;
   QAction *m_EnemyAction;
+
+  QString m_mapFileName;
+  int m_m;
+  int m_n;
+  QGraphicsScene m_scene;
 };
 
 //=========================================================================
