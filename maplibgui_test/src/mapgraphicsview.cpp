@@ -28,3 +28,33 @@ MapGraphicsView::~MapGraphicsView()
 }
 
 //-------------------------------------------------------------------------
+void MapGraphicsView::mouseDoubleClickEvent( QMouseEvent * event )
+{
+  QGraphicsView::mouseDoubleClickEvent( event );
+}
+
+//-------------------------------------------------------------------------
+void MapGraphicsView::mouseMoveEvent( QMouseEvent * event )
+{
+  QGraphicsView::mouseMoveEvent( event );
+}
+
+//-------------------------------------------------------------------------
+void MapGraphicsView::mousePressEvent( QMouseEvent * event )
+{
+  QGraphicsView::mousePressEvent( event );
+}
+
+//-------------------------------------------------------------------------
+void MapGraphicsView::mouseReleaseEvent( QMouseEvent * event )
+{
+  QGraphicsView::mouseReleaseEvent(event);
+}
+
+//-------------------------------------------------------------------------
+void MapGraphicsView::paintEvent( QPaintEvent * event )
+{
+  QGraphicsView::paintEvent( event );
+}
+
+//-------------------------------------------------------------------------
