@@ -20,6 +20,14 @@ public:
   MapGraphicsView( QGraphicsScene * scene, QWidget * parent = 0 );
   ~MapGraphicsView();
 
+  enum SceneState{
+    Undefined = 0,
+    Free,
+    Block,
+    Player,
+    Enemy,
+  };
+
 protected:
   //void contextMenuEvent( QContextMenuEvent * event );
   //void dragEnterEvent( QDragEnterEvent * event );
@@ -43,7 +51,11 @@ protected:
   //void showEvent( QShowEvent * event );
   //bool viewportEvent( QEvent * event )
   //void wheelEvent( QWheelEvent * event );
+  SceneState m_state;
 
+public:
+  void setState( SceneState state );
+  SceneState getState()const;
 };
 
 //=========================================================================

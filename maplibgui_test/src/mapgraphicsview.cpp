@@ -9,7 +9,8 @@ Created by infinitydao@gmail.com
 
 //-------------------------------------------------------------------------
 MapGraphicsView::MapGraphicsView( QWidget * parent /* = 0 */ )
-:QGraphicsView(parent)
+:QGraphicsView(parent),
+m_state(Undefined)
 {
 
 }
@@ -42,6 +43,20 @@ void MapGraphicsView::mouseMoveEvent( QMouseEvent * event )
 //-------------------------------------------------------------------------
 void MapGraphicsView::mousePressEvent( QMouseEvent * event )
 {
+  switch(m_state){
+    case Free:
+      break;
+    case Block:
+      scene()->addPixmap( QPixmap(":/images/block.png") );
+      break;
+    case Player:
+      break;
+    case Enemy:
+      break;
+    case Undefined:
+    default:
+      break;
+  }
   QGraphicsView::mousePressEvent( event );
 }
 
@@ -55,6 +70,18 @@ void MapGraphicsView::mouseReleaseEvent( QMouseEvent * event )
 void MapGraphicsView::paintEvent( QPaintEvent * event )
 {
   QGraphicsView::paintEvent( event );
+}
+
+//-------------------------------------------------------------------------
+void MapGraphicsView::setState( SceneState state )
+{
+  m_state = state;
+}
+
+//-------------------------------------------------------------------------
+MapGraphicsView::SceneState MapGraphicsView::getState()const
+{
+  return m_state;
 }
 
 //-------------------------------------------------------------------------

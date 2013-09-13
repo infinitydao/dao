@@ -9,14 +9,14 @@
 
 //-------------------------------------------------------------------------
 MainWindow::MainWindow( QWidget *parent, Qt::WindowFlags flags )
-:QMainWindow( parent, flags ),
-m_state( Undefined )
+:QMainWindow( parent, flags )
 {
   setupUi(this);
   graphicsView->setVisible( false );
 
   CreateActions();
   CreateMenus();
+  ConnectButtons();
 }
 
 //-------------------------------------------------------------------------
@@ -37,7 +37,7 @@ void MainWindow::OnNewMap()
   maplib::Map::instance()->reset( pNewMapDialog->Width().toInt(), pNewMapDialog->Height().toInt() );
 
   createNewMap();
-  m_state = Free;
+  Ui::MainWindow::graphicsView->setState( MapGraphicsView::SceneState::Free );
 }
 
 //-------------------------------------------------------------------------
@@ -87,20 +87,23 @@ void MainWindow::CreateActions()
   connect( m_ExitAction, SIGNAL(triggered()),
     this, SLOT(OnExit()));
 
-
-  m_BlockAction = new QAction( tr("Block"), this );
+  QPixmap blockPic(":/images/block.png");
+  m_BlockAction = new QAction( QIcon(blockPic), tr("Block"), this );
   connect( m_BlockAction, SIGNAL(triggered()),
     this, SLOT(OnBlock()) );
 
-  m_EmptyAction = new QAction( tr("Empty"), this );
+  QPixmap emptyPic(":/images/free.png");
+  m_EmptyAction = new QAction( QIcon(emptyPic), tr("Free"), this );
   connect( m_EmptyAction, SIGNAL(triggered()),
-    this, SLOT(OnFree()));
+    this, SLOT(OnEmpty()));
 
-  m_PlayerAction = new QAction( tr("Player"), this );
+  QPixmap playerPic(":/images/player.png");
+  m_PlayerAction = new QAction( QIcon(playerPic), tr("Player"), this );
   connect( m_PlayerAction, SIGNAL(triggered()),
     this, SLOT(OnPlayer()) );
 
-  m_EnemyAction = new QAction( tr("Enemy"), this );
+  QPixmap enemyPic(":/images/enemy.png");
+  m_EnemyAction = new QAction( QIcon(enemyPic), tr("Enemy"), this );
   connect( m_EnemyAction, SIGNAL(triggered()),
     this, SLOT(OnEnemy()) ); 
 }
@@ -119,25 +122,25 @@ void MainWindow::CreateMenus()
 //-------------------------------------------------------------------------
 void MainWindow::OnBlock()
 {
-  m_state = Block;
+  graphicsView->setState( MapGraphicsView::SceneState::Block );
 }
 
 //-------------------------------------------------------------------------
 void MainWindow::OnEmpty()
 {
-  m_state = Free;
+  graphicsView->setState( MapGraphicsView::SceneState::Free );
 }
 
 //-------------------------------------------------------------------------
 void MainWindow::OnPlayer()
 {
-  m_state = Player;
+  graphicsView->setState( MapGraphicsView::SceneState::Player );
 }
 
 //-------------------------------------------------------------------------
 void MainWindow::OnEnemy()
 {
-  m_state = Enemy;
+  graphicsView->setState( MapGraphicsView::SceneState::Enemy );
 }
 
 //-------------------------------------------------------------------------
@@ -157,6 +160,15 @@ void MainWindow::createGrid()
   for( int i = 0; i <= maplib::Map::instance()->height(); i++ )
     m_scene.addLine( 0, i*maplib::Map::instance()->cellSize(), maplib::Map::instance()->cellSize()*maplib::Map::instance()->width(), i*maplib::Map::instance()->cellSize() );
   graphicsView->setScene( &m_scene );
+}
+
+//-------------------------------------------------------------------------
+void MainWindow::ConnectButtons()
+{
+  toolButton->setDefaultAction( m_BlockAction );
+  toolButton_2->setDefaultAction( m_EmptyAction );
+  toolButton_3->setDefaultAction( m_PlayerAction );
+  toolButton_4->setDefaultAction( m_EnemyAction );
 }
 
 //-------------------------------------------------------------------------
