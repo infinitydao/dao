@@ -9,7 +9,8 @@
 
 //-------------------------------------------------------------------------
 MainWindow::MainWindow( QWidget *parent, Qt::WindowFlags flags )
-:QMainWindow( parent, flags )
+:QMainWindow( parent, flags ),
+m_state( Undefined )
 {
   setupUi(this);
   graphicsView->setVisible( false );
@@ -36,6 +37,7 @@ void MainWindow::OnNewMap()
   maplib::Map::instance()->reset( pNewMapDialog->Width().toInt(), pNewMapDialog->Height().toInt() );
 
   createNewMap();
+  m_state = Free;
 }
 
 //-------------------------------------------------------------------------
@@ -117,25 +119,25 @@ void MainWindow::CreateMenus()
 //-------------------------------------------------------------------------
 void MainWindow::OnBlock()
 {
-
+  m_state = Block;
 }
 
 //-------------------------------------------------------------------------
 void MainWindow::OnEmpty()
 {
-
+  m_state = Free;
 }
 
 //-------------------------------------------------------------------------
 void MainWindow::OnPlayer()
 {
-
+  m_state = Player;
 }
 
 //-------------------------------------------------------------------------
 void MainWindow::OnEnemy()
 {
-
+  m_state = Enemy;
 }
 
 //-------------------------------------------------------------------------
