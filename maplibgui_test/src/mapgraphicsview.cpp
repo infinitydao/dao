@@ -123,12 +123,13 @@ void MapGraphicsView::alignPoint(QPointF &point)
 //-------------------------------------------------------------------------
 bool MapGraphicsView::CheckValidCoords(int x, int y)
 {
-//   QPointF p = mapToScene( x, y );
-//   alignPoint( p );
-//   if( x < 0 || y < 0 || x > p.x()*maplib::Map::instance()->cellSize() || y > p.y()*maplib::Map::instance()->cellSize() )
-//     return false;
-//   else
-//     return true;
+   QPointF p = mapToScene( x, y );
+
+   if( p.x() < 0 || p.x() > maplib::Map::instance()->cellSize()*maplib::Map::instance()->width() )
+     return false;
+   if( p.y() < 0 || p.y() > maplib::Map::instance()->cellSize()*maplib::Map::instance()->height() )
+     return false;
+
   return true;
 }
 
