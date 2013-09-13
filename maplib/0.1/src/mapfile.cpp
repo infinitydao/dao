@@ -76,8 +76,8 @@ void maplib::MapFile::saveFileHeader()
   const int cN = Map::instance()->width();
   const int cM = Map::instance()->height();
 
-  m_file.write( (char*)(&cM), sizeof(cM) );
   m_file.write( (char*)(&cN), sizeof(cN) );
+  m_file.write( (char*)(&cM), sizeof(cM) );
 }
 
 //-------------------------------------------------------------------------
@@ -85,7 +85,8 @@ void maplib::MapFile::saveFileData()
 {
   for( int i = 0; i < Map::instance()->width(); i++ ){
     for( int j = 0; j < Map::instance()->height(); j++ ){
-      m_file.write( (char*)(&Map::instance()->m_map[i][j]), sizeof(maplib::RegionItem::RegionItemType) );
+      RegionItem item = Map::instance()->m_map[i][j];
+      m_file.write( (char*)&item, sizeof(maplib::RegionItem::RegionItemType) );
     }
   }
 }
@@ -96,8 +97,8 @@ void maplib::MapFile::loadFileHeader(int *n, int *m)
   if( !m || !n )
     return;
 
-  m_file.read( (char*)m, sizeof(int) );
   m_file.read( (char*)n, sizeof(int) );
+  m_file.read( (char*)m, sizeof(int) );
 }
 
 //-------------------------------------------------------------------------
@@ -112,7 +113,7 @@ void maplib::MapFile::loadFileData( int n, int m )
   for( int i = 0; i < m; i++ ){
     for( int j = 0; j < n; j++ ){
       m_file.read( (char*)(&type), sizeof(maplib::RegionItem::RegionItemType) );
-      Map::instance()->m_map[i][j] = type;
+      Map::instance()->m_map[i][j].setType( type );
     }
   }
 }
