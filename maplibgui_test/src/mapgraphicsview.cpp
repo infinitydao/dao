@@ -8,6 +8,7 @@ Created by infinitydao@gmail.com
 #include <QGraphicsPixmapItem>
 #include <QMouseEvent>
 #include "mapgraphicsview.h"
+#include "map.h"
 
 //-------------------------------------------------------------------------
 MapGraphicsView::MapGraphicsView( QWidget * parent /* = 0 */ )
@@ -99,9 +100,20 @@ QGraphicsPixmapItem* MapGraphicsView::DrawObject( SceneState state, int x, int y
 
   pItem = scene()->addPixmap( pixmap );
   QPointF p = mapToScene( x, y );
+  alignPoint( p );
   pItem->setX( p.x() );
   pItem->setY( p.y() );
   return pItem;
+}
+
+//-------------------------------------------------------------------------
+void MapGraphicsView::alignPoint(QPointF &point)
+{
+  int x = point.x()/maplib::Map::instance()->cellSize();
+  point.setX( x*maplib::Map::instance()->cellSize() );
+
+  int y = point.y()/maplib::Map::instance()->cellSize();
+  point.setY( y*maplib::Map::instance()->cellSize() );
 }
 
 //-------------------------------------------------------------------------

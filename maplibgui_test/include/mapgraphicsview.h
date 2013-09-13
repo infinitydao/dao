@@ -58,6 +58,7 @@ public:
   SceneState getState()const;
 
   virtual QGraphicsPixmapItem* DrawObject( SceneState state, int x, int y );
+  virtual void alignPoint( QPointF& point );
 };
 
 //=========================================================================
