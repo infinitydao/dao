@@ -48,13 +48,15 @@ void MainWindow::OnNewMap()
 //-------------------------------------------------------------------------
 void MainWindow::OnSave()
 {
+  maplib::Map::instance()->setFileName( QFileDialog::getSaveFileName() );
+  maplib::Map::instance()->SaveMap();
   m_state = Saved;
 }
 
 //-------------------------------------------------------------------------
 void MainWindow::OnSaveAs()
 {
-  m_state = Saved;
+  OnSave();
 }
 
 //-------------------------------------------------------------------------

@@ -101,6 +101,9 @@ bool maplib::CMap::LoadMap()
 //-------------------------------------------------------------------------
 bool maplib::CMap::SaveMap()
 {
+  MapFile file( fileName() );
+  if( file.Open() )
+    return file.Save();
   return false;
 }
 
