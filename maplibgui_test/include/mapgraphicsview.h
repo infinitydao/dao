@@ -59,6 +59,7 @@ public:
 
   virtual QGraphicsPixmapItem* DrawObject( SceneState state, int x, int y );
   virtual void alignPoint( QPointF& point );
+  virtual bool CheckValidCoords( int x, int y );
 };
 
 //=========================================================================

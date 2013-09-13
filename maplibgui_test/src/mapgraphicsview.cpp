@@ -46,7 +46,8 @@ void MapGraphicsView::mouseMoveEvent( QMouseEvent * event )
 //-------------------------------------------------------------------------
 void MapGraphicsView::mousePressEvent( QMouseEvent * event )
 {
-  DrawObject( m_state, event->pos().x(), event->pos().y() );
+  if( CheckValidCoords( event->pos().x(), event->pos().y() ) )
+    DrawObject( m_state, event->pos().x(), event->pos().y() );
   QGraphicsView::mousePressEvent( event );
 }
 
@@ -98,6 +99,9 @@ QGraphicsPixmapItem* MapGraphicsView::DrawObject( SceneState state, int x, int y
       break;
   }
 
+  QSize CellSize( maplib::Map::instance()->cellSize(), maplib::Map::instance()->cellSize() );
+  pixmap = pixmap.scaled( CellSize );
+
   pItem = scene()->addPixmap( pixmap );
   QPointF p = mapToScene( x, y );
   alignPoint( p );
@@ -114,6 +118,18 @@ void MapGraphicsView::alignPoint(QPointF &point)
 
   int y = point.y()/maplib::Map::instance()->cellSize();
   point.setY( y*maplib::Map::instance()->cellSize() );
+}
+
+//-------------------------------------------------------------------------
+bool MapGraphicsView::CheckValidCoords(int x, int y)
+{
+//   QPointF p = mapToScene( x, y );
+//   alignPoint( p );
+//   if( x < 0 || y < 0 || x > p.x()*maplib::Map::instance()->cellSize() || y > p.y()*maplib::Map::instance()->cellSize() )
+//     return false;
+//   else
+//     return true;
+  return true;
 }
 
 //-------------------------------------------------------------------------
