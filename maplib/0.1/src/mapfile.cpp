@@ -83,7 +83,6 @@ void maplib::MapFile::saveFileHeader()
 //-------------------------------------------------------------------------
 void maplib::MapFile::saveFileData()
 {
-  m_file.seek( 2*sizeof(int) );
   for( int i = 0; i < Map::instance()->width(); i++ ){
     for( int j = 0; j < Map::instance()->height(); j++ ){
       RegionItem::RegionItemType itemType = Map::instance()->m_map[i][j].type();
@@ -112,11 +111,9 @@ void maplib::MapFile::loadFileData( int n, int m )
 
   RegionItem::RegionItemType type;
 
-  m_file.seek( 2*sizeof(int) );
-
   for( int i = 0; i < n; i++ ){
     for( int j = 0; j < m; j++ ){
-      m_file.read( (char*)(&type), sizeof(RegionItem::RegionItemType) );
+      m_file.read( (char*)(&type), sizeof(char) );
       Map::instance()->m_map[i][j].setType( type );
     }
   }
