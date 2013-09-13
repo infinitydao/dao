@@ -5,6 +5,8 @@ Created by infinitydao@gmail.com
  General Publing License v 2.0
 */
 
+#include <QGraphicsPixmapItem>
+#include <QMouseEvent>
 #include "mapgraphicsview.h"
 
 //-------------------------------------------------------------------------
@@ -44,15 +46,34 @@ void MapGraphicsView::mouseMoveEvent( QMouseEvent * event )
 void MapGraphicsView::mousePressEvent( QMouseEvent * event )
 {
   switch(m_state){
-    case Free:
+    case Free:{
+      QPixmap freePic(":/images/free.png");
+      QGraphicsPixmapItem *pItem = scene()->addPixmap( freePic );
+      pItem->setX( event->pos().x() );
+      pItem->setY( event->pos().y() );
       break;
-    case Block:
-      scene()->addPixmap( QPixmap(":/images/block.png") );
+      }
+    case Block:{
+      QPixmap blockPick(":/images/block.png");
+      QGraphicsPixmapItem *pItem = scene()->addPixmap( blockPick );
+      pItem->setX( event->pos().x() );
+      pItem->setY( event->pos().y() );
       break;
-    case Player:
+      }
+    case Player:{
+      QPixmap playerPic(":/images/player.png");
+      QGraphicsPixmapItem *pItem = scene()->addPixmap( playerPic );
+      pItem->setX( event->pos().x() );
+      pItem->setY( event->pos().y() );
       break;
-    case Enemy:
+      }
+    case Enemy:{
+      QPixmap enemyPic(":/images/enemy.png");
+      QGraphicsPixmapItem *pItem = scene()->addPixmap( enemyPic );
+      pItem->setX( event->pos().x() );
+      pItem->setY( event->pos().y() );
       break;
+      }
     case Undefined:
     default:
       break;
