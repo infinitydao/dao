@@ -8,6 +8,7 @@ Created by infinitydao@gmail.com
 #include <stdexcept>
 #include "maplib.h"
 #include "map.h"
+#include "mapfile.h"
 
 std::auto_ptr<maplib::CMap> maplib::Map::_inst( new maplib::CMap );
 
@@ -90,6 +91,10 @@ int maplib::CMap::cellSize()const
 //-------------------------------------------------------------------------
 bool maplib::CMap::LoadMap()
 {
+  MapFile file( fileName() );
+  if( file.Open() )
+    return file.Load();
+
   return false;
 }
 

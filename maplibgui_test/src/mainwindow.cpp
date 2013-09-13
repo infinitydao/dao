@@ -61,7 +61,10 @@ void MainWindow::OnSaveAs()
 void MainWindow::OnLoad()
 {
   maplib::Map::instance()->setFileName( QFileDialog::getOpenFileName() );
-  maplib::Map::instance()->LoadMap();
+  if( maplib::Map::instance()->LoadMap() ){
+    graphicsView->setVisible( true );
+    LoadMap();
+  }
   m_state = Loaded;
 }
 
@@ -180,6 +183,26 @@ void MainWindow::ConnectButtons()
   toolButton_2->setDefaultAction( m_EmptyAction );
   toolButton_3->setDefaultAction( m_PlayerAction );
   toolButton_4->setDefaultAction( m_EnemyAction );
+}
+
+//-------------------------------------------------------------------------
+void MainWindow::LoadMap()
+{
+  createNewMap();
+  createGrid();
+  LoadObjects();
+}
+
+//-------------------------------------------------------------------------
+void MainWindow::LoadObjects()
+{
+  for( int i = 0; i < maplib::Map::instance()->width(); i++ ){
+    for( int j = 0; j < maplib::Map::instance()->height(); j++ ){
+      if( maplib::Map::instance()->m_map[i][j].type() != maplib::RegionItem::Free ){
+        graphicsView->DrawObject( (MapGraphicsView::SceneState)maplib::Map::instance()->m_map[i][j].type(), i*maplib::Map::instance()->cellSize(), j*maplib::Map::instance()->cellSize() );
+      }
+    }
+  }
 }
 
 //-------------------------------------------------------------------------

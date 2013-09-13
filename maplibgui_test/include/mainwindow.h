@@ -48,6 +48,9 @@ private:
   void createNewMap();
   void createGrid();
 
+  void LoadMap();
+  void LoadObjects();
+
   QAction *m_NewMapAction;
   QAction *m_SaveMapAction;
   QAction *m_SaveAsMapAction;
