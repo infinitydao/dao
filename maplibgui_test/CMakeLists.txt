@@ -36,6 +36,7 @@ set( SOURCES
 set( UI_SOURCES
 	resources/mainwindow.ui
 	resources/newdialog.ui
+	resources/opendialog.ui
 )
 
 set( RESOURCES
