@@ -56,6 +56,8 @@ protected:
 public:
   void setState( SceneState state );
   SceneState getState()const;
+
+  virtual QGraphicsPixmapItem* DrawObject( SceneState state, int x, int y );
 };
 
 //=========================================================================

@@ -45,39 +45,7 @@ void MapGraphicsView::mouseMoveEvent( QMouseEvent * event )
 //-------------------------------------------------------------------------
 void MapGraphicsView::mousePressEvent( QMouseEvent * event )
 {
-  switch(m_state){
-    case Free:{
-      QPixmap freePic(":/images/free.png");
-      QGraphicsPixmapItem *pItem = scene()->addPixmap( freePic );
-      pItem->setX( event->pos().x() );
-      pItem->setY( event->pos().y() );
-      break;
-      }
-    case Block:{
-      QPixmap blockPick(":/images/block.png");
-      QGraphicsPixmapItem *pItem = scene()->addPixmap( blockPick );
-      pItem->setX( event->pos().x() );
-      pItem->setY( event->pos().y() );
-      break;
-      }
-    case Player:{
-      QPixmap playerPic(":/images/player.png");
-      QGraphicsPixmapItem *pItem = scene()->addPixmap( playerPic );
-      pItem->setX( event->pos().x() );
-      pItem->setY( event->pos().y() );
-      break;
-      }
-    case Enemy:{
-      QPixmap enemyPic(":/images/enemy.png");
-      QGraphicsPixmapItem *pItem = scene()->addPixmap( enemyPic );
-      pItem->setX( event->pos().x() );
-      pItem->setY( event->pos().y() );
-      break;
-      }
-    case Undefined:
-    default:
-      break;
-  }
+  DrawObject( m_state, event->pos().x(), event->pos().y() );
   QGraphicsView::mousePressEvent( event );
 }
 
@@ -103,6 +71,37 @@ void MapGraphicsView::setState( SceneState state )
 MapGraphicsView::SceneState MapGraphicsView::getState()const
 {
   return m_state;
+}
+
+//-------------------------------------------------------------------------
+QGraphicsPixmapItem* MapGraphicsView::DrawObject( SceneState state, int x, int y )
+{
+  QGraphicsPixmapItem* pItem = 0;
+  QPixmap pixmap;
+
+  switch( state ){
+    case Free:
+      pixmap = QPixmap(":/images/free.png");
+      break;
+    case Block:
+      pixmap = QPixmap(":/images/block.png");
+      break;
+    case Player:
+      pixmap = QPixmap(":/images/player.png");
+      break;
+    case Enemy:
+      pixmap = QPixmap(":/images/enemy.png");
+      break;
+    case Undefined:
+    default:
+      break;
+  }
+
+  pItem = scene()->addPixmap( pixmap );
+  QPointF p = mapToScene( x, y );
+  pItem->setX( p.x() );
+  pItem->setY( p.y() );
+  return pItem;
 }
 
 //-------------------------------------------------------------------------
