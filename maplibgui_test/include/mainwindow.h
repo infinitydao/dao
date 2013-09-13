@@ -21,6 +21,13 @@ public:
   MainWindow( QWidget *parent = 0, Qt::WindowFlags flags = 0 );
   ~MainWindow();
 
+  enum EditorState{
+    Undefined = 0,
+    Edited,
+    Saved,
+    Loaded,
+  };
+
 public slots:
   void OnNewMap();
   void OnSave();
@@ -53,6 +60,7 @@ private:
   QAction *m_EnemyAction;
 
   QGraphicsScene m_scene;
+  EditorState m_state;
 
 };
 

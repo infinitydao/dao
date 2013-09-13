@@ -29,7 +29,7 @@ namespace maplib{
     CMap();
     virtual ~CMap();
 
-    void reset( int n, int m );             //Удаляет старую карту и инициализирует новую
+    virtual void reset( int n, int m );             //Удаляет старую карту и инициализирует новую
 
     void setSize( int width, int height );
 
@@ -42,6 +42,9 @@ namespace maplib{
     int cellSize()const;
 
     QVector<QVector<RegionItem>>  m_map;    //Карта
+
+    virtual bool LoadMap();
+    virtual bool SaveMap();
   };
 
   typedef Singleton<CMap> Map;

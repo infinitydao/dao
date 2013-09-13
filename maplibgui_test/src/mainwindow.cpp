@@ -4,12 +4,15 @@
           General Publing License v 2.0
 */
 
+#include <QFileDialog>
+#include <QMessageBox>
 #include "mainwindow.h"
 #include "newmapdialog.h"
 
 //-------------------------------------------------------------------------
 MainWindow::MainWindow( QWidget *parent, Qt::WindowFlags flags )
-:QMainWindow( parent, flags )
+:QMainWindow( parent, flags ),
+m_state( Undefined )
 {
   setupUi(this);
   graphicsView->setVisible( false );
@@ -38,29 +41,37 @@ void MainWindow::OnNewMap()
 
   createNewMap();
   Ui::MainWindow::graphicsView->setState( MapGraphicsView::SceneState::Free );
+
+  m_state = Edited;
 }
 
 //-------------------------------------------------------------------------
 void MainWindow::OnSave()
 {
-
+  m_state = Saved;
 }
 
 //-------------------------------------------------------------------------
 void MainWindow::OnSaveAs()
 {
-
+  m_state = Saved;
 }
 
 //-------------------------------------------------------------------------
 void MainWindow::OnLoad()
 {
-
+  maplib::Map::instance()->setFileName( QFileDialog::getOpenFileName() );
+  maplib::Map::instance()->LoadMap();
+  m_state = Loaded;
 }
 
 //-------------------------------------------------------------------------
 void MainWindow::OnExit()
 {
+  QMessageBox::StandardButton res = QMessageBox::question( this, tr("Do you realy want to exit?"), tr("Save file before exit?"),
+    QMessageBox::Ok|QMessageBox::Cancel );
+  if( res == QMessageBox::Ok )
+    OnSave();
   qApp->exit( 0 );
 }
 
