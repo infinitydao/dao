@@ -49,7 +49,7 @@ void MainWindow::OnNewMap()
 void MainWindow::OnSave()
 {
   maplib::Map::instance()->setFileName( QFileDialog::getSaveFileName() );
-  maplib::Map::instance()->SaveMap();
+  maplib::Map::instance()->saveMap();
   m_state = Saved;
 }
 
@@ -63,7 +63,7 @@ void MainWindow::OnSaveAs()
 void MainWindow::OnLoad()
 {
   maplib::Map::instance()->setFileName( QFileDialog::getOpenFileName() );
-  if( maplib::Map::instance()->LoadMap() ){
+  if( maplib::Map::instance()->loadMap() ){
     graphicsView->setVisible( true );
     LoadMap();
   }
@@ -73,10 +73,12 @@ void MainWindow::OnLoad()
 //-------------------------------------------------------------------------
 void MainWindow::OnExit()
 {
+#ifndef _DEBUG
   QMessageBox::StandardButton res = QMessageBox::question( this, tr("Do you realy want to exit?"), tr("Save file before exit?"),
     QMessageBox::Ok|QMessageBox::Cancel );
   if( res == QMessageBox::Ok )
     OnSave();
+#endif //_DEBUG
   qApp->exit( 0 );
 }
 
@@ -198,13 +200,13 @@ void MainWindow::LoadMap()
 //-------------------------------------------------------------------------
 void MainWindow::LoadObjects()
 {
-  for( int i = 0; i < maplib::Map::instance()->width(); i++ ){
-    for( int j = 0; j < maplib::Map::instance()->height(); j++ ){
-      if( maplib::Map::instance()->m_map[i][j].type() != maplib::RegionItem::Free ){
-        graphicsView->DrawObject( (MapGraphicsView::SceneState)maplib::Map::instance()->m_map[i][j].type(), i*maplib::Map::instance()->cellSize(), j*maplib::Map::instance()->cellSize() );
-      }
-    }
-  }
+   for( int i = 0; i < maplib::Map::instance()->width(); i++ ){
+     for( int j = 0; j < maplib::Map::instance()->height(); j++ ){
+       if( maplib::Map::instance()->m_map[i][j].blockId != maplib::ItemType::Free ){
+         graphicsView->DrawObject( (MapGraphicsView::SceneState)maplib::Map::instance()->m_map[i][j].blockId, i*maplib::Map::instance()->cellSize(), j*maplib::Map::instance()->cellSize() );
+       }
+     }
+   }
 }
 
 //-------------------------------------------------------------------------
