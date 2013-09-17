@@ -8,6 +8,14 @@ Created by infinitydao@gmail.com
 #ifndef __MAPLIB_H__
 #define __MAPLIB_H__
 
+#ifndef MAPLIB_MIN_VERSION
+  #define MAPLIB_MIN_VERSION 1
+#endif
+
+#ifndef MAPLIB_MAJ_VERSION
+  #define MAPLIB_MAJ_VERSION 0
+#endif
+
 #include "mapfile.h"
 #include "map.h"
 

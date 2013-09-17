@@ -83,3 +83,70 @@ bool maplib::CMap::saveMap()
 }
 
 //-------------------------------------------------------------------------
+void maplib::CMap::seedMagick( MAPFILEHEADER *pHeader, unsigned int uiHeaderSize )
+{
+  if( !pHeader || !uiHeaderSize )
+    return;
+
+  //ѕока что жестко отсекаем по размеру, в дальнейшем ориентирование на номер версии
+  if( uiHeaderSize != sizeof(MAPFILEHEADER) )
+    return;
+
+  pHeader->minVersion = MAPLIB_MIN_VERSION;
+  pHeader->majVersion = MAPLIB_MAJ_VERSION;
+
+  const unsigned char Magick_a = 0xFF;
+  const unsigned char Magick_b = 0x0A;
+  const unsigned char Magick_c = 0xAF;
+  const unsigned char Magick_d = 0xCF;
+
+  const unsigned char Magick_e = 0x4C;
+  const unsigned char Magick_f = 0x00;
+  const unsigned char Magick_g = 0x11;
+  const unsigned char Magick_h = 0xAE;
+
+  pHeader->Magick[0] = Magick_a;
+  pHeader->Magick[1] = Magick_b;
+  pHeader->Magick[2] = Magick_c;
+  pHeader->Magick[3] = Magick_d;
+
+  pHeader->Magick[4] = Magick_e;
+  pHeader->Magick[5] = Magick_f;
+  pHeader->Magick[6] = Magick_g;
+  pHeader->Magick[7] = Magick_h;
+}
+
+//-------------------------------------------------------------------------
+bool maplib::CMap::checkMagick( MAPFILEHEADER *pHeader, unsigned int uiHeaderSize,
+                         unsigned int uiMinVersion, unsigned int uiMajVersion )
+{
+  const unsigned char Magick_a = 0xFF;
+  const unsigned char Magick_b = 0x0A;
+  const unsigned char Magick_c = 0xAF;
+  const unsigned char Magick_d = 0xCF;
+
+  const unsigned char Magick_e = 0x4C;
+  const unsigned char Magick_f = 0x00;
+  const unsigned char Magick_g = 0x11;
+  const unsigned char Magick_h = 0xAE;
+
+  if( !pHeader || !uiHeaderSize )
+    return false;
+
+  if( uiMinVersion != MAPLIB_MIN_VERSION || uiMajVersion != MAPLIB_MAJ_VERSION )
+    return false;
+
+  if( uiHeaderSize != sizeof(MAPFILEHEADER) )
+    return false;
+
+  bool chain_1 = pHeader->Magick[0] == Magick_a && pHeader->Magick[1] == Magick_b;
+  bool chain_2 = pHeader->Magick[2] == Magick_c && pHeader->Magick[3] == Magick_d;
+  bool chain_3 = pHeader->Magick[4] == Magick_e && pHeader->Magick[5] == Magick_f;
+  bool chain_4 = pHeader->Magick[6] == Magick_g && pHeader->Magick[7] == Magick_h;
+
+  return chain_1 && chain_2 && chain_3 && chain_4;
+
+  return false;
+}
+
+//-------------------------------------------------------------------------

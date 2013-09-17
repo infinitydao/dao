@@ -13,14 +13,6 @@ Created by infinitydao@gmail.com
 #include "regionitem.h"
 #include "singleton.h"
 
-#ifndef MAPLIB_MIN_VERSION
-  #define MAPLIB_MIN_VERSION 1
-#endif
-
-#ifndef MAPLIB_MAJ_VERSION
-  #define MAPLIB_MAJ_VERSION 0
-#endif
-
 //=========================================================================
 namespace maplib{
 
@@ -30,6 +22,10 @@ class CMap
 protected:
   MAPFILEHEADER m_header;
   QString m_filename;
+
+  virtual void seedMagick( MAPFILEHEADER *pHeader, unsigned int uiHeaderSize );     //Инициализирует заголовок "волшебными числами" и версией
+  virtual bool checkMagick( MAPFILEHEADER *pHeader, unsigned int uiHeaderSize,
+                            unsigned int uiMinVersion, unsigned int uiMajVersion );    //Проверяет корректность заголовка и версии
 
 public:
   QVector<QVector<MAPBLOCK>> m_map;
