@@ -4,5 +4,7 @@
 		<file>images/free.png</file>
         <file>images/enemy.png</file>
 		<file>images/player.png</file>
+		<file>images/home.png</file>
+		<file>images/money.png</file>
     </qresource>
 </RCC>
