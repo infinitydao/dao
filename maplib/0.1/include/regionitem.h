@@ -25,7 +25,7 @@ namespace maplib
     unsigned int additionalInfoSize;        //Размер дополнительной информации
   };
 
-  struct MAPBLOCK
+  struct MAPITEM
   {
     unsigned int blockId;                   //Идентификатор блока
     unsigned int health;                    //Уровень повреждений/здоровья

@@ -14,25 +14,19 @@ Created by infinitydao@gmail.com
 //=========================================================================
 namespace maplib{
 
+class CMap;
+
 class MapFile
 {
 public:
-  MapFile( );
   MapFile( const QString& name );
   virtual ~MapFile();
 
-  bool Open();
-  void setFileName( const QString& name );
-  bool Save();
-  bool Load();
+  virtual bool save(CMap& map);
+  virtual bool load(CMap& map);
 
 protected:
   QFile m_file;
-
-  virtual void saveFileHeader();
-  virtual void saveFileData();
-  virtual void loadFileHeader( int* n, int* m );
-  virtual void loadFileData( int N, int M );
 };
 
 }//namespace maplib

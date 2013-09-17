@@ -28,7 +28,7 @@ protected:
                             unsigned int uiMinVersion, unsigned int uiMajVersion );    //Проверяет корректность заголовка и версии
 
 public:
-  QVector<QVector<MAPBLOCK>> m_map;
+  QVector<QVector<MAPITEM>> m_map;
 
   CMap();
   virtual ~CMap();
@@ -46,6 +46,9 @@ public:
 
   virtual bool loadMap();
   virtual bool saveMap();
+
+  int majorVersion()const;
+  int minorVersion()const;
 };
 
 typedef Singleton<CMap> Map;

@@ -20,6 +20,13 @@ std::auto_ptr<maplib::CMap> maplib::Map::_inst( new maplib::CMap );
 maplib::CMap::CMap()
 {
   memset( &m_header, 0, sizeof(m_header) );
+  seedMagick( &m_header, sizeof(m_header) );
+  if( m_header.minVersion == 0 && m_header.majVersion == 0 ){
+    m_header.minVersion = MAPLIB_MIN_VERSION;
+    m_header.majVersion = MAPLIB_MAJ_VERSION;
+  }
+  if( m_header.cellSize == 0 )
+    m_header.cellSize = DEFAULT_CELL_SIZE;
 }
 
 //-------------------------------------------------------------------------
@@ -31,43 +38,57 @@ maplib::CMap::~CMap()
 //-------------------------------------------------------------------------
 void maplib::CMap::reset( int Width, int Height )
 {
+  setSize( Width, Height );
+  m_map.clear();
 
+  for( int i = 0; i < Width; i++ ){
+    QVector<MAPITEM> vec;
+    for( int j = 0; j < Height; j++ ){
+      MAPITEM item;
+      item.blockId = static_cast<int>( ItemType::Free );
+      item.health = 0;
+      item.direction = static_cast<int>( DirectionType::Fixed );
+      vec.push_back( item );
+    }
+    m_map.push_back( vec );
+  }
 }
 
 //-------------------------------------------------------------------------
 void maplib::CMap::setSize( int Width, int Height )
 {
-
+  m_header.mapWidth = Width;
+  m_header.mapHeight = Height;
 }
 
 //-------------------------------------------------------------------------
 int maplib::CMap::width()const
 {
-  return -1;
+  return m_header.mapWidth;
 }
 
 //-------------------------------------------------------------------------
 int maplib::CMap::height()const
 {
-  return -1;
+  return m_header.mapHeight;
 }
 
 //-------------------------------------------------------------------------
 void maplib::CMap::setFileName( const QString& name )
 {
-
+  m_filename = name;
 }
 
 //-------------------------------------------------------------------------
 QString maplib::CMap::fileName()const
 {
-  return "Fake";
+  return m_filename;
 }
 
 //-------------------------------------------------------------------------
 int maplib::CMap::cellSize()const
 {
-  return -1;
+  return m_header.cellSize;
 }
 
 //-------------------------------------------------------------------------
@@ -147,6 +168,18 @@ bool maplib::CMap::checkMagick( MAPFILEHEADER *pHeader, unsigned int uiHeaderSiz
   return chain_1 && chain_2 && chain_3 && chain_4;
 
   return false;
+}
+
+//-------------------------------------------------------------------------
+int maplib::CMap::majorVersion()const
+{
+  return m_header.majVersion;
+}
+
+//-------------------------------------------------------------------------
+int maplib::CMap::minorVersion()const
+{
+  return m_header.minVersion;
 }
 
 //-------------------------------------------------------------------------
