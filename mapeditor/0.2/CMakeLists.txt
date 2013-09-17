@@ -1,6 +1,6 @@
 cmake_minimum_required( VERSION 2.8 )
 
-set( PROJECT_NAME maplibgui_test )
+set( PROJECT_NAME mapeditor )
 set( PROJECT_LANGUAGES CXX C )
 set( ROOT_PATH "../" )
 
