@@ -14,18 +14,6 @@ Created by infinitydao@gmail.com
 //=========================================================================
 namespace maplib{
 
-//Структура, описывающая заголовок карты
-struct MAPFILEHEADER
-{
-  unsigned char A[8];                     //Магическое число для простоты идентификации
-  unsigned int minVersion;                //Младший номер версии
-  unsigned int majVersion;                //Старший номер версии (пример 4.2 - 4 старший, 2 младший)
-  unsigned int mapWidth;                  //Ширина карты в элементарных блоках
-  unsigned int mapHeight;                 //Высота карты в элементарных блоках
-  unsigned int additionalInfoOffset;      //Смещение в файле, где располагается дополнительная информация(здоровье, очки и т.д.)
-  unsigned int additionalInfoSize;        //Размер дополнительной информации
-};
-
 class MapFile
 {
 public:

@@ -9,7 +9,6 @@ Created by infinitydao@gmail.com
 #define __MAPLIB_H__
 
 #include "mapfile.h"
-#include "mapconsole.h"
 #include "map.h"
 
 

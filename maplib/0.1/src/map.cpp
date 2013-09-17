@@ -18,11 +18,8 @@ std::auto_ptr<maplib::CMap> maplib::Map::_inst( new maplib::CMap );
 
 //-------------------------------------------------------------------------
 maplib::CMap::CMap()
-:m_cellSize(DEFAULT_CELL_SIZE),
-m_width(0),
-m_height(0)
 {
-
+  memset( &m_header, 0, sizeof(m_header) );
 }
 
 //-------------------------------------------------------------------------
@@ -32,78 +29,56 @@ maplib::CMap::~CMap()
 }
 
 //-------------------------------------------------------------------------
-void maplib::CMap::reset( int n, int m )
+void maplib::CMap::reset( int Width, int Height )
 {
-    m_map.clear();
 
-    setSize( n, m );
-
-    if( n < maplib::cMapMinimumSize || m < maplib::cMapMinimumSize )
-      throw std::runtime_error( "Map size cant be less cMapMinimumSize" );
-  
-    for( unsigned int i = 0; i < n; i++ ){
-      QVector<RegionItem> vec;
-      for( unsigned int j = 0; j < m; j++ ){
-        RegionItem Item(RegionItem::Block);
-        vec.push_back( Item );
-      }
-      m_map.push_back( vec );
-    }
 }
 
 //-------------------------------------------------------------------------
-void maplib::CMap::setSize( int width, int height )
+void maplib::CMap::setSize( int Width, int Height )
 {
-  m_width = width;
-  m_height = height;
+
 }
 
 //-------------------------------------------------------------------------
 int maplib::CMap::width()const
 {
-  return m_width;
+  return -1;
 }
 
 //-------------------------------------------------------------------------
 int maplib::CMap::height()const
 {
-  return m_height;
+  return -1;
 }
 
 //-------------------------------------------------------------------------
 void maplib::CMap::setFileName( const QString& name )
 {
-  m_fileName = name;
+
 }
 
 //-------------------------------------------------------------------------
 QString maplib::CMap::fileName()const
 {
-  return m_fileName;
+  return "Fake";
 }
 
 //-------------------------------------------------------------------------
 int maplib::CMap::cellSize()const
 {
-  return m_cellSize;
+  return -1;
 }
 
 //-------------------------------------------------------------------------
-bool maplib::CMap::LoadMap()
+bool maplib::CMap::loadMap()
 {
-  MapFile file( fileName() );
-  if( file.Open() )
-    return file.Load();
-
   return false;
 }
 
 //-------------------------------------------------------------------------
-bool maplib::CMap::SaveMap()
+bool maplib::CMap::saveMap()
 {
-  MapFile file( fileName() );
-  if( file.Open() )
-    return file.Save();
   return false;
 }
 

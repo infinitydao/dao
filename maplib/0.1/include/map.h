@@ -13,41 +13,46 @@ Created by infinitydao@gmail.com
 #include "regionitem.h"
 #include "singleton.h"
 
+#ifndef MAPLIB_MIN_VERSION
+  #define MAPLIB_MIN_VERSION 1
+#endif
+
+#ifndef MAPLIB_MAJ_VERSION
+  #define MAPLIB_MAJ_VERSION 0
+#endif
+
 //=========================================================================
 namespace maplib{
 
   //=======================================================================
-  class CMap 
-  {
-  protected:
-    const unsigned int m_cellSize;          //Размер одной игровой ячейки (ширина и высота)
-    QString m_fileName;                     //Файл карты
-    int m_width;                          //Ширина карты
-    int m_height;                         //Высота карты
+class CMap
+{
+protected:
+  MAPFILEHEADER m_header;
+  QString m_filename;
 
-  public:
-    CMap();
-    virtual ~CMap();
+public:
+  QVector<QVector<MAPBLOCK>> m_map;
 
-    virtual void reset( int n, int m );             //Удаляет старую карту и инициализирует новую
+  CMap();
+  virtual ~CMap();
 
-    void setSize( int width, int height );
+  virtual void reset( int Width, int Height );
+  void setSize( int Width, int Height );
 
-    int height()const;
-    int width()const;
+  int width()const;
+  int height()const;
 
-    void setFileName( const QString& name );
-    QString fileName()const;
+  void setFileName( const QString& name );
+  QString fileName()const;
 
-    int cellSize()const;
+  int cellSize()const;
 
-    QVector<QVector<RegionItem>>  m_map;    //Карта
+  virtual bool loadMap();
+  virtual bool saveMap();
+};
 
-    virtual bool LoadMap();
-    virtual bool SaveMap();
-  };
-
-  typedef Singleton<CMap> Map;
+typedef Singleton<CMap> Map;
 
 }//namespace maplib
 

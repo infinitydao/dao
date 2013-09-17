@@ -23,14 +23,12 @@ set( HEADERS
 	include/maplib.h
 	include/regionitem.h
 	include/map.h
-	include/mapconsole.h
 	include/mapfile.h
 	include/singleton.h
 )
 
 set( SOURCES	
 	src/map.cpp
-	src/mapconsole.cpp
 	src/regionitem.cpp
 	src/mapfile.cpp
 	src/maplib_pch.cpp

@@ -12,41 +12,50 @@ Created by infinitydao@gmail.com
 namespace maplib 
 {
 
-//========================================================================
-/*Описывает структуру игровой ячейки*/
-class RegionItem
-{
-public:
-  /*тип регионов(ячеек) на игровом поле*/
-  enum RegionItemType{
-          Wrong = 0,        //некорректная ячейка
-          Block = 0xFF,     //движение по ячейке невозможно
-          Free,             //движение по ячейке возможно
-          Player,           //движение по ячейке возможно и на ней находится игрок
-          Enemy,            //движение по ячейке возможно и на ней находится враг
+  //Структура, описывающая заголовок карты
+  struct MAPFILEHEADER
+  {
+    unsigned char A[8];                     //Магическое число для простоты идентификации
+    unsigned int minVersion;                //Младший номер версии
+    unsigned int majVersion;                //Старший номер версии (пример 4.2 - 4 старший, 2 младший)
+    unsigned int mapWidth;                  //Ширина карты в элементарных блоках
+    unsigned int mapHeight;                 //Высота карты в элементарных блоках
+    unsigned int cellSize;                  //Размер в экранных координатах
+    unsigned int additionalInfoOffset;      //Смещение в файле, где располагается дополнительная информация(здоровье, очки и т.д.)
+    unsigned int additionalInfoSize;        //Размер дополнительной информации
   };
 
-  //Инициализируем по умолчанию неверным блоком, чтобы отлавливать возможные ошибки
-  RegionItem( RegionItemType type = Wrong );
+  struct MAPBLOCK
+  {
+    unsigned int blockId;                   //Идентификатор блока
+    unsigned int health;                    //Уровень повреждений/здоровья
+    unsigned int direction;                 //Направление движения для движущихся объектов
+  };
 
-  RegionItem( const RegionItem& other );
-  RegionItem& operator=( const RegionItem& other );
-
-  //добавлена возможность создания производных регионов
-  virtual ~RegionItem();
-
-protected:
-  //тип региона
-  RegionItemType m_type;
-
-public:
-  //метод возвращает тип региона
-  RegionItemType type()const;
-  //метод меняет тип региона
-  void setType( RegionItemType type );
+enum ItemType{
+    UndefinedItem = 0,          //Неопределенный
+    Block,                  //Движение заблокировано
+    Free,                   //Движение возможно
+    Player,                 //В ячейке находится персонаж игрока
+    Enemy,                  //В ячейке находится вражеский персонаж
+    Money,                  //В ячейке находятся призовые очки
+    Home,                   //Ячейка, достижение игроком которой приводит к победе
 };
 
-//=========================================================================
+enum BlockType{
+    UndefinedBlock = 0,          //Неопределенный тип блока
+    Wood,                   //Дерево
+    Metal,                  //Металл
+    Composite,              //Композиционные материалы
+};
+
+enum DirectionType{
+     Fixed = 0,             //Без направления
+     Up,                    //Вверх
+     Down,                  //Вниз
+     Left,                  //Влево
+     Right,                 //Вправо
+};
 
 }//namespace maplib
 //=========================================================================
