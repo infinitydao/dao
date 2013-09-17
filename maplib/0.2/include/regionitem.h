@@ -33,7 +33,7 @@ namespace maplib
   };
 
 enum ItemType{
-    UndefinedItem = 0,          //Неопределенный
+    UndefinedItem = 0,      //Неопределенный
     Block,                  //Движение заблокировано
     Free,                   //Движение возможно
     Player,                 //В ячейке находится персонаж игрока
@@ -43,7 +43,7 @@ enum ItemType{
 };
 
 enum BlockType{
-    UndefinedBlock = 0,          //Неопределенный тип блока
+    UndefinedBlock = 0,     //Неопределенный тип блока
     Wood,                   //Дерево
     Metal,                  //Металл
     Composite,              //Композиционные материалы

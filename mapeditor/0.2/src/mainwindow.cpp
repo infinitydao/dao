@@ -124,6 +124,16 @@ void MainWindow::CreateActions()
   m_EnemyAction = new QAction( QIcon(enemyPic), tr("Enemy"), this );
   connect( m_EnemyAction, SIGNAL(triggered()),
     this, SLOT(OnEnemy()) ); 
+
+  QPixmap moneyPic(":/images/money.png");
+  m_moneyAction = new QAction( QIcon(moneyPic), tr("Money"), this );
+  connect( m_moneyAction, SIGNAL(triggered()),
+    this, SLOT(OnMoney()));
+
+  QPixmap homePic(":/images/home.png");
+  m_homeAction = new QAction( QIcon(homePic), tr("Home"), this );
+  connect( m_homeAction, SIGNAL(triggered()),
+    this, SLOT(OnHome()));
 }
 
 //-------------------------------------------------------------------------
@@ -162,6 +172,18 @@ void MainWindow::OnEnemy()
 }
 
 //-------------------------------------------------------------------------
+void MainWindow::OnMoney()
+{
+  graphicsView->setItemType( maplib::Money );
+}
+
+//-------------------------------------------------------------------------
+void MainWindow::OnHome()
+{
+  graphicsView->setItemType( maplib::Home );
+}
+
+//-------------------------------------------------------------------------
 void MainWindow::createNewMap()
 {
   graphicsView->setVisible( true );
@@ -187,6 +209,8 @@ void MainWindow::ConnectButtons()
   toolButton_2->setDefaultAction( m_EmptyAction );
   toolButton_3->setDefaultAction( m_PlayerAction );
   toolButton_4->setDefaultAction( m_EnemyAction );
+  toolButton_5->setDefaultAction( m_moneyAction );
+  toolButton_6->setDefaultAction( m_homeAction );
 }
 
 //-------------------------------------------------------------------------

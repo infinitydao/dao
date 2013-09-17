@@ -39,6 +39,8 @@ public slots:
   void OnEmpty();
   void OnPlayer();
   void OnEnemy();
+  void OnMoney();
+  void OnHome();
 
 private:
   void CreateActions();
@@ -61,6 +63,8 @@ private:
   QAction *m_EmptyAction;
   QAction *m_PlayerAction;
   QAction *m_EnemyAction;
+  QAction *m_moneyAction;
+  QAction *m_homeAction;
 
   QGraphicsScene m_scene;
   EditorState m_state;

@@ -99,6 +99,12 @@ QGraphicsPixmapItem* MapGraphicsView::DrawObject( maplib::ItemType type, int x, 
     case maplib::Enemy:
       pixmap = QPixmap(":/images/enemy.png");
       break;
+    case maplib::Money:
+      pixmap = QPixmap(":/images/money.png");
+      break;
+    case maplib::Home:
+      pixmap = QPixmap(":/images/home.png");
+      break;
     default:
       break;
   }
