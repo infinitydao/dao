@@ -47,8 +47,8 @@ void MapGraphicsView::mouseMoveEvent( QMouseEvent * event )
 void MapGraphicsView::mousePressEvent( QMouseEvent * event )
 {
   if( CheckValidCoords( event->pos().x(), event->pos().y() ) ){
-    DrawObject( m_type, event->pos().x(), event->pos().y() );
     QPointF p = mapToScene( event->pos().x(), event->pos().y() );
+    DrawObject( m_type, p.x(), p.y() );
     int i = p.x()/maplib::Map::instance()->cellSize();
     int j = p.y()/maplib::Map::instance()->cellSize();
     maplib::Map::instance()->m_map[i][j].blockId = m_type;
@@ -107,7 +107,7 @@ QGraphicsPixmapItem* MapGraphicsView::DrawObject( maplib::ItemType type, int x, 
   pixmap = pixmap.scaled( CellSize );
 
   pItem = scene()->addPixmap( pixmap );
-  QPointF p = mapToScene( x, y );
+  QPointF p(x,y); //mapToScene( x, y );
   alignPoint( p );
   pItem->setX( p.x() );
   pItem->setY( p.y() );
