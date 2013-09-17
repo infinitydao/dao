@@ -16,9 +16,13 @@ Created by infinitydao@gmail.com
 //=========================================================================
 namespace maplib{
 
-  //=======================================================================
+class MapFile;
+
+//=======================================================================
 class CMap
 {
+  friend class MapFile;
+
 protected:
   MAPFILEHEADER m_header;
   QString m_filename;

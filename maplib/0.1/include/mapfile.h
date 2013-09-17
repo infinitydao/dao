@@ -19,7 +19,7 @@ class CMap;
 class MapFile
 {
 public:
-  MapFile( const QString& name );
+  MapFile();
   virtual ~MapFile();
 
   virtual bool save(CMap& map);

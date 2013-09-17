@@ -94,13 +94,17 @@ int maplib::CMap::cellSize()const
 //-------------------------------------------------------------------------
 bool maplib::CMap::loadMap()
 {
-  return false;
+  MapFile file;
+
+  return file.load(*this);
 }
 
 //-------------------------------------------------------------------------
 bool maplib::CMap::saveMap()
 {
-  return false;
+  MapFile file;
+
+  return file.save(*this);
 }
 
 //-------------------------------------------------------------------------
