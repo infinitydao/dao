@@ -7,13 +7,13 @@ Created by infinitydao@gmail.com
 
 #include <QGraphicsPixmapItem>
 #include <QMouseEvent>
+
 #include "mapgraphicsview.h"
-#include "map.h"
 
 //-------------------------------------------------------------------------
 MapGraphicsView::MapGraphicsView( QWidget * parent /* = 0 */ )
 :QGraphicsView(parent),
-m_state(Undefined)
+m_type(maplib::UndefinedItem)
 {
 
 }
@@ -46,8 +46,13 @@ void MapGraphicsView::mouseMoveEvent( QMouseEvent * event )
 //-------------------------------------------------------------------------
 void MapGraphicsView::mousePressEvent( QMouseEvent * event )
 {
-  if( CheckValidCoords( event->pos().x(), event->pos().y() ) )
-    DrawObject( m_state, event->pos().x(), event->pos().y() );
+  if( CheckValidCoords( event->pos().x(), event->pos().y() ) ){
+    DrawObject( m_type, event->pos().x(), event->pos().y() );
+    QPointF p = mapToScene( event->pos().x(), event->pos().y() );
+    int i = p.x()/maplib::Map::instance()->cellSize();
+    int j = p.y()/maplib::Map::instance()->cellSize();
+    maplib::Map::instance()->m_map[i][j].blockId = m_type;
+  }
   QGraphicsView::mousePressEvent( event );
 }
 
@@ -64,37 +69,36 @@ void MapGraphicsView::paintEvent( QPaintEvent * event )
 }
 
 //-------------------------------------------------------------------------
-void MapGraphicsView::setState( SceneState state )
+void MapGraphicsView::setItemType( maplib::ItemType type )
 {
-  m_state = state;
+  m_type = type;
 }
 
 //-------------------------------------------------------------------------
-MapGraphicsView::SceneState MapGraphicsView::getState()const
+maplib::ItemType MapGraphicsView::getItemType()const
 {
-  return m_state;
+  return m_type;
 }
 
 //-------------------------------------------------------------------------
-QGraphicsPixmapItem* MapGraphicsView::DrawObject( SceneState state, int x, int y )
+QGraphicsPixmapItem* MapGraphicsView::DrawObject( maplib::ItemType type, int x, int y )
 {
   QGraphicsPixmapItem* pItem = 0;
   QPixmap pixmap;
 
-  switch( state ){
-    case Free:
+  switch( type ){
+    case maplib::Free:
       pixmap = QPixmap(":/images/free.png");
       break;
-    case Block:
+    case maplib::Block:
       pixmap = QPixmap(":/images/block.png");
       break;
-    case Player:
+    case maplib::Player:
       pixmap = QPixmap(":/images/player.png");
       break;
-    case Enemy:
+    case maplib::Enemy:
       pixmap = QPixmap(":/images/enemy.png");
       break;
-    case Undefined:
     default:
       break;
   }

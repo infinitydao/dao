@@ -40,7 +40,7 @@ void MainWindow::OnNewMap()
   maplib::Map::instance()->reset( pNewMapDialog->Width().toInt(), pNewMapDialog->Height().toInt() );
 
   createNewMap();
-  Ui::MainWindow::graphicsView->setState( MapGraphicsView::SceneState::Free );
+  Ui::MainWindow::graphicsView->setItemType( maplib::Free );
 
   m_state = Edited;
 }
@@ -140,25 +140,25 @@ void MainWindow::CreateMenus()
 //-------------------------------------------------------------------------
 void MainWindow::OnBlock()
 {
-  graphicsView->setState( MapGraphicsView::SceneState::Block );
+  graphicsView->setItemType( maplib::Block );
 }
 
 //-------------------------------------------------------------------------
 void MainWindow::OnEmpty()
 {
-  graphicsView->setState( MapGraphicsView::SceneState::Free );
+  graphicsView->setItemType( maplib::Free );
 }
 
 //-------------------------------------------------------------------------
 void MainWindow::OnPlayer()
 {
-  graphicsView->setState( MapGraphicsView::SceneState::Player );
+  graphicsView->setItemType( maplib::Player );
 }
 
 //-------------------------------------------------------------------------
 void MainWindow::OnEnemy()
 {
-  graphicsView->setState( MapGraphicsView::SceneState::Enemy );
+  graphicsView->setItemType( maplib::Enemy );
 }
 
 //-------------------------------------------------------------------------
@@ -193,7 +193,6 @@ void MainWindow::ConnectButtons()
 void MainWindow::LoadMap()
 {
   createNewMap();
-  createGrid();
   LoadObjects();
 }
 
@@ -203,7 +202,7 @@ void MainWindow::LoadObjects()
    for( int i = 0; i < maplib::Map::instance()->width(); i++ ){
      for( int j = 0; j < maplib::Map::instance()->height(); j++ ){
        if( maplib::Map::instance()->m_map[i][j].blockId != maplib::ItemType::Free ){
-         graphicsView->DrawObject( (MapGraphicsView::SceneState)maplib::Map::instance()->m_map[i][j].blockId, i*maplib::Map::instance()->cellSize(), j*maplib::Map::instance()->cellSize() );
+         graphicsView->DrawObject( (maplib::ItemType)maplib::Map::instance()->m_map[i][j].blockId, i*maplib::Map::instance()->cellSize(), j*maplib::Map::instance()->cellSize() );
        }
      }
    }

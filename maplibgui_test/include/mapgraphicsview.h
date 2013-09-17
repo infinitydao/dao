@@ -9,6 +9,7 @@ Created by infinitydao@gmail.com
 #define __MAPGRAPHICSVIEW_H__
 
 #include <QGraphicsView>
+#include "map.h"
 
 //=========================================================================
 class MapGraphicsView : public QGraphicsView
@@ -19,14 +20,6 @@ public:
   MapGraphicsView( QWidget * parent = 0 );
   MapGraphicsView( QGraphicsScene * scene, QWidget * parent = 0 );
   ~MapGraphicsView();
-
-  enum SceneState{
-    Undefined = 0,
-    Free,
-    Block,
-    Player,
-    Enemy,
-  };
 
 protected:
   //void contextMenuEvent( QContextMenuEvent * event );
@@ -51,13 +44,13 @@ protected:
   //void showEvent( QShowEvent * event );
   //bool viewportEvent( QEvent * event )
   //void wheelEvent( QWheelEvent * event );
-  SceneState m_state;
+  maplib::ItemType m_type;
 
 public:
-  void setState( SceneState state );
-  SceneState getState()const;
+  void setItemType( maplib::ItemType type );
+  maplib::ItemType getItemType()const;
 
-  virtual QGraphicsPixmapItem* DrawObject( SceneState state, int x, int y );
+  virtual QGraphicsPixmapItem* DrawObject( maplib::ItemType type, int x, int y );
   virtual void alignPoint( QPointF& point );
   virtual bool CheckValidCoords( int x, int y );
 };

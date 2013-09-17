@@ -52,7 +52,7 @@ bool maplib::MapFile::load( CMap& map )
 
   m_file.setFileName( map.fileName() );
 
-  if( !m_file.open( QIODevice::ReadWrite|QIODevice::Truncate ) )
+  if( !m_file.open( QIODevice::ReadOnly ) )
     return false;
 
   m_file.read( (char*)(&map.m_header), sizeof(map.m_header) );
