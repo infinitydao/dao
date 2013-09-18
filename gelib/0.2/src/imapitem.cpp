@@ -4,7 +4,7 @@
           General Publing License v 2.0
 */
 
-#include "imapitem.h"
+#include "gelib.h"
 
 //-------------------------------------------------------------------------
 gelib::IMapItem::IMapItem( maplib::ItemType type )
