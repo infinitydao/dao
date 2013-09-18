@@ -27,6 +27,7 @@ set( HEADERS
 
 set( SOURCES	
 	src/gelib.cpp
+	src/imapitem.cpp
 )
 
 #set( UI_SOURCES
