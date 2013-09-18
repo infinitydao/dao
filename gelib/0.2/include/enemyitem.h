@@ -15,7 +15,7 @@ class EnemyItem : public IDynamicItem
 {
 };
 
-}
+} //namespace gelib
 
 //=========================================================================
 

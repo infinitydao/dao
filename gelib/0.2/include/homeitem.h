@@ -15,7 +15,7 @@ class HomeItem : public IStaticItem
 {
 };
 
-}
+} //namespace gelib
 
 //=========================================================================
 
