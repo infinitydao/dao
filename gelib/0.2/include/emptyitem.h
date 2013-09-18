@@ -1,20 +1,22 @@
-/*                gelib.h
+/*              emptyitem.h
       created by infinitydao@gmail.com
                   09/2013
           General Publing License v 2.0
 */
 
-#ifndef __GELIB_H__
-#define __GELIB_H__
-
-#include "regionitem.h"
-#include "imapitem.h"
-#include "idrawitem.h"
-#include "istaticitem.h"
-#include "idynamicitem.h"
-#include "emptyitem.h"
+#ifndef __EMPTYITEM_H__
+#define __EMPTYITEM_H__
 
 //=========================================================================
+namespace gelib
+{
+
+class EmptyItem : public IStaticItem
+{
+};
+
+} //namespace gelib
+
 //=========================================================================
 
-#endif //__GELIB_H__
+#endif //__EMPTYITEM_H__
