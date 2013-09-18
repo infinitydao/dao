@@ -8,6 +8,7 @@
 #define __MUSHROOMER_H__
 
 #include <QApplication>
+#include "mainwindow.h"
 
 
 #endif //__MUSHROOMER_H__

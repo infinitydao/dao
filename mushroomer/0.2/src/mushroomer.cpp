@@ -7,9 +7,12 @@
 #include "mushroomer.h"
 
 //-------------------------------------------------------------------------
-int main( int argc, char argv[] )
+int main( int argc, char *argv[] )
 {
-  return 0;
+  QApplication app( argc, argv );
+  MainWindow wnd;
+  wnd.show();
+  return app.exec();
 }
 
 //-------------------------------------------------------------------------

@@ -7,4 +7,16 @@
 #include "mainwindow.h"
 
 //-------------------------------------------------------------------------
+MainWindow::MainWindow( QWidget *parent, Qt::WindowFlags flags )
+:QMainWindow( parent, flags )
+{
+  setupUi(this);
+}
+
+//-------------------------------------------------------------------------
+MainWindow::~MainWindow()
+{
+
+}
+
 //-------------------------------------------------------------------------

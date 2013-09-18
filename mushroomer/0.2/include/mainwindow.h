@@ -8,11 +8,16 @@
 #define __MAINWINDOW_H__
 
 #include <QMainWindow>
+#include "ui_mushroomer.h"
 
 //=========================================================================
-class MainWindow : public QMainWindow
+class MainWindow : public QMainWindow, public Ui::MainWindow
 {
   Q_OBJECT
+
+public:
+  MainWindow( QWidget *parent = 0, Qt::WindowFlags flags = 0 );
+  ~MainWindow();
 };
 
 //=========================================================================
