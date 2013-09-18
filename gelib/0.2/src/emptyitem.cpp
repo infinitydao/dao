@@ -38,6 +38,15 @@ gelib::EmptyItem& gelib::EmptyItem::operator=( const EmptyItem& other )
 {
   if( this == &other )
     return *this;
+
+  m_type = other.m_type;
+  m_x = other.m_x;
+  m_y = other.m_y;
+  m_width = other.m_width;
+  m_height = other.m_height;
+  m_pixmap = other.m_pixmap;
+
+  return *this;
 }
 
 //-------------------------------------------------------------------------
