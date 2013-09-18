@@ -25,6 +25,7 @@ set( HEADERS
 	include/imapitem.h
 	include/idrawitem.h
 	include/istaticitem.h
+	include/idynamicitem.h
 )
 
 set( SOURCES	
@@ -32,6 +33,7 @@ set( SOURCES
 	src/imapitem.cpp
 	src/idrawitem.cpp
 	src/istaticitem.cpp
+	src/idynamicitem.cpp
 )
 
 #set( UI_SOURCES
