@@ -7,6 +7,7 @@
 #ifndef __GELIB_H__
 #define __GELIB_H__
 
+#include "regionitem.h"
 #include "imapitem.h"
 #include "idrawitem.h"
 #include "istaticitem.h"
