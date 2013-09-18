@@ -23,11 +23,13 @@ include( ${QT_USE_FILE} )
 set( HEADERS
 	include/gelib.h
 	include/imapitem.h
+	include/idrawitem.h
 )
 
 set( SOURCES	
 	src/gelib.cpp
 	src/imapitem.cpp
+	src/idrawitem.cpp
 )
 
 #set( UI_SOURCES
