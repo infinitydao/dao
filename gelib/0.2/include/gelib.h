@@ -18,6 +18,8 @@
 #include "homeitem.h"
 #include "moneyitem.h"
 #include "playeritem.h"
+#include "dynamicitemfactory.h"
+#include "staticitemfactory.h"
 
 //=========================================================================
 //=========================================================================
