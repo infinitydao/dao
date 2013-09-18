@@ -22,6 +22,7 @@ include( ${QT_USE_FILE} )
 
 set( HEADERS
 	include/gelib.h
+	include/imapitem.h
 )
 
 set( SOURCES	
