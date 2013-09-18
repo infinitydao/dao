@@ -24,12 +24,14 @@ set( HEADERS
 	include/gelib.h
 	include/imapitem.h
 	include/idrawitem.h
+	include/istaticitem.h
 )
 
 set( SOURCES	
 	src/gelib.cpp
 	src/imapitem.cpp
 	src/idrawitem.cpp
+	src/istaticitem.cpp
 )
 
 #set( UI_SOURCES

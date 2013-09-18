@@ -8,7 +8,10 @@
 
 //-------------------------------------------------------------------------
 gelib::IMapItem::IMapItem( maplib::ItemType type )
-:m_type( type )
+:m_type( type ),
+m_directionType( maplib::Fixed ),
+m_health( 0 ),
+m_velocity( 0 )
 {
 
 }
