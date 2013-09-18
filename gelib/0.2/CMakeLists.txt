@@ -42,9 +42,9 @@ set( SOURCES
 #	resources/uis/mainwindow.ui
 #)
 
-#set( RESOURCES
-#	resources/simpedit.qrc
-#)
+set( RESOURCES
+	resources/gelib.qrc
+)
 
 #set( MOC_HEADERS
 #	include/mainwindow.h
@@ -52,10 +52,10 @@ set( SOURCES
 
 #qt4_wrap_cpp( MOC_SOURCES ${MOC_HEADERS} )
 #qt4_wrap_ui( UI_HEADERS ${UI_SOURCES} )
-#qt4_add_resources( QRC_SOURCES ${RESOURCES} )
+qt4_add_resources( QRC_SOURCES ${RESOURCES} )
 
 add_library( ${PROJECT_NAME} ${HEADERS} ${SOURCES}  )
-#${MOC_SOURCES} ${UI_HEADERS} ${QRC_SOURCES}
-target_link_libraries( ${PROJECT_NAME} ${QT_LIBRARIES} ${QT_QTMAIN_LIBRARY} maplib)
+#${MOC_SOURCES} ${UI_HEADERS} 
+target_link_libraries( ${PROJECT_NAME} ${QT_LIBRARIES} ${QT_QTMAIN_LIBRARY} ${QRC_SOURCES} maplib)
 
 
