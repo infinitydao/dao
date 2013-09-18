@@ -22,14 +22,16 @@ include( ${QT_USE_FILE} )
 
 set( HEADERS
 	include/mushroomer.h
+	include/mainwindow.h
 )
 
 set( SOURCES	
 	src/mushroomer.cpp
+	src/mainwindow.cpp
 )
 
 set( UI_SOURCES
-	resources/mashroomer.ui
+	resources/mushroomer.ui
 )
 
 set( RESOURCES
@@ -37,7 +39,7 @@ set( RESOURCES
 )
 
 set( MOC_HEADERS
-	include/mushroomer.h
+	include/mainwindow.h
 )
 
 qt4_wrap_cpp( MOC_SOURCES ${MOC_HEADERS} )
@@ -45,4 +47,4 @@ qt4_wrap_ui( UI_HEADERS ${UI_SOURCES} )
 qt4_add_resources( QRC_SOURCES ${RESOURCES} )
  
 add_executable( ${PROJECT_NAME}  ${HEADERS} ${SOURCES} ${MOC_SOURCES} ${UI_HEADERS} ${QRC_SOURCES} )
-target_link_libraries( ${PROJECT_NAME} ${QT_LIBRARIES} ${QT_QTMAIN_LIBRARY} maplib)
+target_link_libraries( ${PROJECT_NAME} ${QT_LIBRARIES} ${QT_QTMAIN_LIBRARY} maplib )
