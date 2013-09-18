@@ -23,26 +23,26 @@ gelib::StaticItemFactory::~StaticItemFactory()
 }
 
 //-------------------------------------------------------------------------
-gelib::IStaticItem* gelib::StaticItemFactory::createItem( maplib::ItemType type, const QPoint&p, const QSize& size )
+gelib::IStaticItem* gelib::StaticItemFactory::createItem( maplib::ItemType type, const QPoint& p, const QSize& size )
 {
   switch( type ){
     case maplib::Free:
       m_emptyCounter++;
-      return new EmptyItem( p.x(), p.y(), size.width(), size.height() );
+      return new EmptyItem( p, size );
       break;
     case maplib::Block:
       m_blockCounter++;
-      return new BlockItem( p.x(), p.y(), size.width(), size.height() );
+      return new BlockItem( p, size );
       break;
     case maplib::Home:
       if( !m_homeCounter ){
         m_homeCounter++;
-        return new HomeItem( p.x(), p.y(), size.width(), size.height() );
+        return new HomeItem( p, size );
       }
       break;
     case maplib::Money:
       m_moneyCounter++;
-      return new MoneyItem( p.x(). p.y(), size.width(), size.height() );
+      return new MoneyItem( p, size );
       break;
     default:
       break;
