@@ -27,6 +27,11 @@ set( HEADERS
 	include/istaticitem.h
 	include/idynamicitem.h
 	include/emptyitem.h
+	include/blockitem.h
+	include/enemyitem.h
+	include/homeitem.h
+	include/moneyitem.h
+	include/playeritem.h
 )
 
 set( SOURCES	
@@ -36,6 +41,11 @@ set( SOURCES
 	src/istaticitem.cpp
 	src/idynamicitem.cpp
 	src/emptyitem.cpp
+	src/blockitem.cpp
+	src/enemyitem.cpp
+	src/homeitem.cpp
+	src/moneyitem.cpp
+	src/playeritem.cpp
 )
 
 set( UI_SOURCES
