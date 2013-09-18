@@ -32,6 +32,8 @@ set( HEADERS
 	include/homeitem.h
 	include/moneyitem.h
 	include/playeritem.h
+	include/staticitemfactory.h
+	include/dynamicitemfactory.h
 )
 
 set( SOURCES	
@@ -46,6 +48,8 @@ set( SOURCES
 	src/homeitem.cpp
 	src/moneyitem.cpp
 	src/playeritem.cpp
+	src/staticitemfactory.cpp
+	src/dynamicitemfactory.cpp
 )
 
 set( UI_SOURCES
