@@ -40,7 +40,7 @@ set( UI_SOURCES
 )
 
 set( RESOURCES
-	resources/maplibgui_test.qrc
+	resources/mapeditor.qrc
 )
 
 set( MOC_HEADERS
