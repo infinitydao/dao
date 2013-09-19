@@ -32,6 +32,7 @@ set( SOURCES
 
 set( UI_SOURCES
 	resources/mushroomer.ui
+	resources/newgamedialog.ui
 )
 
 set( RESOURCES
