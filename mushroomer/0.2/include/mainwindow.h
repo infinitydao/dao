@@ -18,6 +18,12 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 public:
   MainWindow( QWidget *parent = 0, Qt::WindowFlags flags = 0 );
   ~MainWindow();
+
+public slots:
+  void OnNewGame();
+  void OnSaveGame();
+  void OnLoadGame();
+  void OnExit();
 };
 
 //=========================================================================
