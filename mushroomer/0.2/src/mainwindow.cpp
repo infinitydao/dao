@@ -29,7 +29,12 @@ MainWindow::~MainWindow()
 void MainWindow::OnNewGame()
 {
   NewGameDialog dlg(this);
-  dlg.exec();
+  if( QDialog::Accepted == dlg.exec() ){
+    gelib::Game::instance()->setMapMode( dlg.getGamePattern() );
+    gelib::Game::instance()->setGameMode( dlg.getGameMode() );
+    gelib::Game::instance()->init();
+    gelib::Game::instance()->setGameStatus( gelib::Inited );
+  }
 }
 
 //-------------------------------------------------------------------------

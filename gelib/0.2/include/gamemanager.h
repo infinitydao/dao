@@ -69,6 +69,8 @@ public:
 
   void setMapMode( GameMapPatterns MapMode );
   GameMapPatterns getMapMode()const;
+
+  virtual bool init();
 };
 
 typedef maplib::Singleton<GameManager> Game;

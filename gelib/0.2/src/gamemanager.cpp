@@ -57,3 +57,9 @@ gelib::GameMapPatterns gelib::GameManager::getMapMode()const
 }
 
 //-------------------------------------------------------------------------
+bool gelib::GameManager::init()
+{
+  return true;
+}
+
+//-------------------------------------------------------------------------

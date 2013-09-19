@@ -65,7 +65,7 @@
     <string>Select game mode</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="gameModeBox">
    <property name="geometry">
     <rect>
      <x>110</x>
