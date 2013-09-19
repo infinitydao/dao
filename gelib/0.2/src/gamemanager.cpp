@@ -147,7 +147,9 @@ bool gelib::GameManager::initMap( GameMapPatterns MapMode )
 //-------------------------------------------------------------------------
 QGraphicsScene* gelib::GameManager::createNewGraphicsScene()
 {
-  return new QGraphicsScene;
+  QGraphicsScene* pScene = new QGraphicsScene;
+  m_pView->setScene( pScene );
+  return pScene;
 }
 
 //-------------------------------------------------------------------------
