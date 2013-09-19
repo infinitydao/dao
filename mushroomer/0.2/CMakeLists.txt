@@ -43,6 +43,7 @@ set( RESOURCES
 
 set( MOC_HEADERS
 	include/mainwindow.h
+	include/newgamedialog.h
 )
 
 qt4_wrap_cpp( MOC_SOURCES ${MOC_HEADERS} )

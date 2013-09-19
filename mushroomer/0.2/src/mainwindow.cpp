@@ -5,6 +5,7 @@
 */
 
 #include "mainwindow.h"
+#include "newgamedialog.h"
 
 //-------------------------------------------------------------------------
 MainWindow::MainWindow( QWidget *parent, Qt::WindowFlags flags )
@@ -27,7 +28,8 @@ MainWindow::~MainWindow()
 //-------------------------------------------------------------------------
 void MainWindow::OnNewGame()
 {
-
+  NewGameDialog dlg(this);
+  dlg.exec();
 }
 
 //-------------------------------------------------------------------------
