@@ -9,9 +9,13 @@
 
 #include "singleton.h"
 
+class QGraphicsScene;
+
 //=========================================================================
 namespace gelib
 {
+
+class GameGraphicsView;
 
 enum GameStatus
 {
@@ -59,6 +63,11 @@ protected:
   GameStatus m_status;
   GameMode m_mode;
   GameMapPatterns m_mapMode;
+  GameGraphicsView *m_pView;
+
+  virtual bool createGrid();
+  virtual bool initMap( GameMapPatterns MapMode );
+  virtual QGraphicsScene* createNewGraphicsScene();
 
 public:
   void setGameStatus( GameStatus status );
@@ -71,6 +80,9 @@ public:
   GameMapPatterns getMapMode()const;
 
   virtual bool init();
+
+  void setGameGraphicsView( GameGraphicsView *pView );
+  GameGraphicsView* getGameGraphicsView();
 };
 
 typedef maplib::Singleton<GameManager> Game;
