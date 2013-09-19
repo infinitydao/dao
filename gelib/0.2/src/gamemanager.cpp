@@ -6,6 +6,8 @@
 
 #include "gelib.h"
 
+std::auto_ptr<gelib::GameManager> gelib::Game::_inst( new gelib::GameManager );
+
 //-------------------------------------------------------------------------
 gelib::GameManager::GameManager()
 {
