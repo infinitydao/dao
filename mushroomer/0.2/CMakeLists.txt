@@ -23,11 +23,13 @@ include( ${QT_USE_FILE} )
 set( HEADERS
 	include/mushroomer.h
 	include/mainwindow.h
+	include/newgamedialog.h
 )
 
 set( SOURCES	
 	src/mushroomer.cpp
 	src/mainwindow.cpp
+	src/newgamedialog.cpp
 )
 
 set( UI_SOURCES
