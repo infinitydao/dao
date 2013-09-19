@@ -20,6 +20,7 @@
 #include "playeritem.h"
 #include "dynamicitemfactory.h"
 #include "staticitemfactory.h"
+#include "gamemanager.h"
 
 //=========================================================================
 //           GELib - is Game Engine Library

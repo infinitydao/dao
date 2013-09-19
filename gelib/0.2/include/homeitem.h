@@ -13,6 +13,12 @@ namespace gelib
 
 class HomeItem : public IStaticItem
 {
+public:
+  explicit HomeItem( int x, int y, int width, int height );
+  explicit HomeItem( const QPoint& p, const QSize& size );
+  explicit HomeItem( const HomeItem& other );
+  ~HomeItem();
+  HomeItem& operator=( const HomeItem& other );
 };
 
 } //namespace gelib

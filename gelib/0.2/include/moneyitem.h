@@ -13,6 +13,12 @@ namespace gelib
 
 class MoneyItem : public IStaticItem
 {
+public:
+  explicit MoneyItem( int x, int y, int width, int height );
+  explicit MoneyItem( const QPoint& p, const QSize& size );
+  explicit MoneyItem( const MoneyItem& other );
+  ~MoneyItem();
+  MoneyItem& operator=( const MoneyItem& other );
 };
 
 } //namespace gelib

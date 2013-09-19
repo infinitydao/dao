@@ -13,6 +13,12 @@ namespace gelib
 
 class BlockItem : public IStaticItem
 {
+public:
+  explicit BlockItem( int x, int y, int width, int height );
+  explicit BlockItem( const QPoint& p, const QSize& size );
+  explicit BlockItem( const BlockItem& other );
+  ~BlockItem();
+  BlockItem& operator=( const BlockItem& other );
 };
 
 } //namespace glib

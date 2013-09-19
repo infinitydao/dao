@@ -34,6 +34,7 @@ set( HEADERS
 	include/playeritem.h
 	include/staticitemfactory.h
 	include/dynamicitemfactory.h
+	include/gamemanager.h
 )
 
 set( SOURCES	
@@ -50,6 +51,7 @@ set( SOURCES
 	src/playeritem.cpp
 	src/staticitemfactory.cpp
 	src/dynamicitemfactory.cpp
+	src/gamemanager.cpp
 )
 
 set( UI_SOURCES
