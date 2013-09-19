@@ -21,6 +21,7 @@
 #include "dynamicitemfactory.h"
 #include "staticitemfactory.h"
 #include "gamemanager.h"
+#include "gamegraphicsview.h"
 
 //=========================================================================
 //           GELib - is Game Engine Library
