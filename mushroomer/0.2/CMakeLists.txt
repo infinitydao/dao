@@ -45,6 +45,7 @@ set( RESOURCES
 set( MOC_HEADERS
 	include/mainwindow.h
 	include/newgamedialog.h
+	../../gelib/0.2/include/gamegraphicsview.h
 )
 
 qt4_wrap_cpp( MOC_SOURCES ${MOC_HEADERS} )

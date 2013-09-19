@@ -14,7 +14,7 @@
    <string>Mushroomer v0.2</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGraphicsView" name="graphicsView">
+   <widget class="gelib::GameGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
       <x>5</x>
@@ -71,6 +71,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>gelib::GameGraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header>gamegraphicsview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
