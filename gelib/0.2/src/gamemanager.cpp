@@ -21,3 +21,39 @@ gelib::GameManager::~GameManager()
 }
 
 //-------------------------------------------------------------------------
+void gelib::GameManager::setGameStatus( GameStatus status )
+{
+  m_status = status;
+}
+
+//-------------------------------------------------------------------------
+gelib::GameStatus gelib::GameManager::getGameStatus()const
+{
+  return m_status;
+}
+
+//-------------------------------------------------------------------------
+void gelib::GameManager::setGameMode( GameMode mode )
+{
+  m_mode = mode;
+}
+
+//-------------------------------------------------------------------------
+gelib::GameMode gelib::GameManager::getGameMode()const
+{
+  return m_mode;
+}
+
+//-------------------------------------------------------------------------
+void gelib::GameManager::setMapMode( GameMapPatterns MapMode )
+{
+  m_mapMode = MapMode;
+}
+
+//-------------------------------------------------------------------------
+gelib::GameMapPatterns gelib::GameManager::getMapMode()const
+{
+  return m_mapMode;
+}
+
+//-------------------------------------------------------------------------
