@@ -35,6 +35,7 @@ set( HEADERS
 	include/staticitemfactory.h
 	include/dynamicitemfactory.h
 	include/gamemanager.h
+	include/gamegraphicsview.h
 )
 
 set( SOURCES	
@@ -52,6 +53,7 @@ set( SOURCES
 	src/staticitemfactory.cpp
 	src/dynamicitemfactory.cpp
 	src/gamemanager.cpp
+	src/gamegraphicsview.cpp
 )
 
 set( UI_SOURCES
@@ -63,7 +65,7 @@ set( RESOURCES
 )
 
 set( MOC_HEADERS
-#	include/mainwindow.h
+	include/gamegraphicsview.h
 )
 
 qt4_wrap_cpp( MOC_SOURCES ${MOC_HEADERS} )
